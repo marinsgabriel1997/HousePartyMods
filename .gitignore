@@ -1,0 +1,23 @@
+# Saída de build
+bin/
+obj/
+*.dll
+*.pdb
+
+# IDEs
+.vs/
+.vscode/
+.idea/
+*.user
+*.suo
+
+# Nunca publicar binários do jogo nem código decompilado
+_decomp/
+_tools/
+_downloads/
+Il2CppAssemblies/
+MelonLoader/
+
+# Sistema
+Thumbs.db
+.DS_Store
