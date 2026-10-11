@@ -12,6 +12,7 @@ Each mod is a standalone DLL: install only the ones you want.
 | Mod | What it does | Download |
 |---|---|---|
 | [RelationshipHints](mods/RelationshipHints/README.en.md) | Shows each reply's effect on friendship and romance in the reply menu (`+1A -1R \| Text`) | [Releases](../../releases?q=RelationshipHints&expanded=true) |
+| [NewTalkMarker](mods/NewTalkMarker/README.en.md) | Shows a "!" above a character when a new line becomes available for them | [Releases](../../releases?q=NewTalkMarker&expanded=true) |
 
 ## Compatibility
 

@@ -17,20 +17,32 @@ Modelo:
 
 ## Destaque de coletáveis no cenário
 
-- **Status:** ideia
+- **Status:** viável. Formato escolhido: segurar uma tecla mostra o nome dos
+  itens próximos (como Baldur's Gate 3 e Divinity), com cor por tipo de ação
 - **O que faz:** destaca itens que o jogador pode pegar ou usar no cenário,
   como a maioria dos jogos faz (contorno, brilho ou ícone), para não ter que
   passar o mouse em tudo.
-- **Pistas** (primeira olhada no código descompilado):
-  - `ClickManager.Highlight()` (virtual) e `CharacterClickManager.Highlight()`:
-    o jogo já tem um destaque de objeto clicável, provavelmente o do mouse em
-    cima. Se der para ligá-lo sem o mouse, o visual fica igual ao do jogo.
-  - `InteractiveItem`, `InteractiveItemBehavior`, `ItemManager`, `CInventory`,
-    `InventoryObject`: candidatos para listar o que existe na cena e o que
-    pode ir para o inventário.
+- **Pistas** (código descompilado, 2026-10-11):
+  - ~~`ClickManager.Highlight()`~~: é de UI (botões, ponteiro), não de objetos
+    do cenário. O jogo (HDRP) não tem sistema de contorno ou brilho próprio,
+    então o visual terá de ser do mod. Caminho mais simples: ícone na tela
+    sobre cada item (posição do mundo convertida para a tela), sem mexer em
+    shaders.
+  - `ItemManager.GetAllItems()`: lista de todos os `InteractiveItem`.
+  - `InteractiveItem`: `HasInteractions(story)`, `Interactions`,
+    `canBeGrabbed`, `_inventoried`, `IsRendererEnabled`, `DisplayName`,
+    `InPlayerInteractionRange()`, `DistanceToInteraction`.
+  - Evento estático `InteractiveItem.OnMouseOver(item)`: o hover do jogo.
+  - História ativa: `GameManager.GetActiveStory()`.
+- **Confirmado no jogo** (sonda, 2026-10-11):
+  - 292 itens, 286 ativos. Os personagens também são `InteractiveItem`
+    (ações `[Inspect, Talk]`).
+  - `canBeGrabbed` não serve: vale `True` para sofá, fogão e personagens.
+  - Coletável = item cuja lista `Interactions` contém `Take` (43 itens, por
+    exemplo, Battery Pack). As outras ações (`Open`, `Close`, `Sit`,
+    `Inspect`...) permitem cores por tipo.
 - **Dúvidas / o que investigar:**
-  - Como distinguir "coletável" (vai para o inventário) de "interativo" (porta,
-    som, luz)? Destacar só um tipo ou os dois com cores diferentes?
+  - Destacar só os coletáveis ou também os interativos, com cores diferentes?
   - Destacar sempre, só ao segurar uma tecla, ou só num raio perto do jogador?
   - Itens escondidos de propósito (parte de quebra-cabeça) estragariam a
     graça? Talvez uma opção para não destacar itens de quest.
@@ -38,24 +50,31 @@ Modelo:
 
 ## Indicador de personagem com fala nova
 
-- **Status:** ideia
-- **O que faz:** mostra quais personagens liberaram fala nova desde a última
-  interação. Opções de visual, em ordem de preferência:
-  1. balão em cima do personagem;
-  2. lista num canto da tela com os personagens que têm novidade;
-  3. um menu que abre com uma tecla.
-- **Pistas:**
-  - `ThoughtBubble` e `ThoughtBubbleManager.Show(actionId, text)`: o jogo já
-    tem balões; talvez dê para reaproveitar o visual.
-  - Do RelationshipHints: `CharacterManager.GetNonPlayerCharacter(nome).Dialogue`
-    dá o `CDialogue` do personagem, e `CriteriaEvaluator.MeetsCritera` avalia
-    condições com o estado atual. As respostas do diálogo 0 (o "ocioso") com
-    critério provavelmente são as falas que se liberam ao longo da história.
+- **Status:** em desenvolvimento (`mods/NewTalkMarker`, plano
+  `planos/executados/p10-marcadores-de-fala-nova.md`)
+- **O que faz:** "!" sobre o personagem quando surge uma fala nova para ele:
+  amarelo (não vista no menu) e verde (vista, mas não escolhida), com as
+  marcas guardadas por save. Detalhes no README do mod.
+- **Confirmado no jogo** (2026-10-11):
+  - `Response.Selected` vem do save; ao carregar, o jogo recria os objetos
+    `Response` e só restaura os valores em `OnSaveGameLoaded`, ~20 s depois de
+    `Load`.
+  - As falas do menu inicial ficam quase todas em `GlobalResponses`, além das
+    do diálogo inicial (`CharacterStoryData.DialogueID`).
+  - Custo: 708 respostas avaliadas em ~7 ms; um personagem por quadro não
+    pesa.
+  - Critérios que oscilam com o momento e são ignorados: proximidade, visão,
+    pose, zona, `State` (dançando, sentado), `Value CurrentMoveTarget` e
+    grupos `NotCurrentlyOccupied*`.
 - **Dúvidas / o que investigar:**
-  - O que conta como "fala nova"? Hipótese: uma resposta do diálogo 0 cujo
-    critério passou a ser verdadeiro e que o jogador ainda não escolheu.
-  - Como saber o que já foi visto? O jogo deve guardar (critérios do tipo
-    "diálogo visto"); usar o mesmo dado mantém compatibilidade com saves.
-  - Quando recalcular: a cada mudança de valor (`ValueStore`) ou a cada X
-    segundos, para não pesar.
-  - Personagens fora da tela ou em outro cômodo: a lista no canto resolve.
+  - Lista no canto da tela para personagens fora de vista.
+  - Se obter um item marca vários personagens de uma vez e se isso incomoda.
+- **Marca de tarefa pendente (azul), fora do plano p10:** mostrar que o
+  personagem espera algo do jogador (por exemplo, a bebida da Katherine).
+  - Testado e retirado (2026-10-11): marcar falas que "só dependem de item"
+    pegou falas genéricas escondidas, como "Do you know what this means in
+    Patrick's notebook?" (exige o caderno), em todo personagem conhecido.
+  - A bebida da Katherine não tem critério de item no menu: a entrega é feita
+    como item, fora do menu, e avança a quest `1477ed2c-...` (estado 1 =
+    pedido feito). Hipótese: derivar o azul das quests em andamento ligadas ao
+    personagem. Investigar como o jogo associa quest e personagem.

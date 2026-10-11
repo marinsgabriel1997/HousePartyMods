@@ -1,5 +1,9 @@
 <Solution>
   <Folder Name="/mods/">
+    <Project Path="mods/NewTalkMarker/NewTalkMarker.csproj" />
     <Project Path="mods/RelationshipHints/RelationshipHints.csproj" />
+  </Folder>
+  <Folder Name="/dev/">
+    <Project Path="dev/Probe/Probe.csproj" />
   </Folder>
 </Solution>
