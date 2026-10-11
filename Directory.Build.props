@@ -1,0 +1,26 @@
+<Project>
+
+  <!-- Configuração comum a todos os mods. Cada .csproj só declara o que é próprio dele. -->
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <Nullable>disable</Nullable>
+    <GenerateDocumentationFile>false</GenerateDocumentationFile>
+    <CopyLocalLockFileAssemblies>false</CopyLocalLockFileAssemblies>
+    <!-- Pasta do jogo com o MelonLoader instalado. Para outra pasta: dotnet build -p:GameDir="..." -->
+    <GameDir Condition="'$(GameDir)' == ''">C:\Program Files (x86)\Steam\steamapps\common\House Party</GameDir>
+    <MelonLoaderDir>$(GameDir)\MelonLoader\net6</MelonLoaderDir>
+    <Il2CppAssembliesDir>$(GameDir)\MelonLoader\Il2CppAssemblies</Il2CppAssembliesDir>
+  </PropertyGroup>
+
+  <!-- Referências que todo mod usa. Nenhuma é copiada para a saída: já estão no jogo. -->
+  <ItemGroup>
+    <Reference Include="$(MelonLoaderDir)\MelonLoader.dll" Private="false" />
+    <Reference Include="$(MelonLoaderDir)\0Harmony.dll" Private="false" />
+    <Reference Include="$(MelonLoaderDir)\Il2CppInterop.Runtime.dll" Private="false" />
+    <Reference Include="$(MelonLoaderDir)\Il2CppInterop.Common.dll" Private="false" />
+    <Reference Include="$(Il2CppAssembliesDir)\Il2Cppmscorlib.dll" Private="false" />
+    <Reference Include="$(Il2CppAssembliesDir)\UnityEngine.CoreModule.dll" Private="false" />
+  </ItemGroup>
+
+</Project>

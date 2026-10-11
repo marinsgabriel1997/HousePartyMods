@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!-- TargetFramework, GameDir e referências comuns vêm do Directory.Build.props da raiz. -->
+  <PropertyGroup>
+    <AssemblyName>RelationshipHints</AssemblyName>
+    <RootNamespace>RelationshipHints</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Reference Include="$(Il2CppAssembliesDir)\Il2CppEekEvents.dll" Private="false" />
+    <Reference Include="$(Il2CppAssembliesDir)\Il2CppEekUI.dll" Private="false" />
+    <Reference Include="$(Il2CppAssembliesDir)\Il2CppEekCharacterEngine.dll" Private="false" />
+    <Reference Include="$(Il2CppAssembliesDir)\UnityEngine.UI.dll" Private="false" />
+    <Reference Include="$(Il2CppAssembliesDir)\UnityEngine.TextRenderingModule.dll" Private="false" />
+  </ItemGroup>
+
+</Project>

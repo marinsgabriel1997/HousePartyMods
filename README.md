@@ -1,35 +1,33 @@
-# RelationshipHints: mod para House Party
+# Mods para House Party
 
 *[English version](README.en.md)*
 
-Mostra, antes de cada opção do menu de respostas, o efeito que ela terá na sua
-relação com o personagem:
+Mods para [House Party](https://store.steampowered.com/app/611790/House_Party/)
+(Eek! Games), feitos com [MelonLoader](https://github.com/LavaGang/MelonLoader).
 
-```
-+1A -1R | I like your glasses. They make you look smart!
-```
+Cada mod é uma DLL independente: instale só os que quiser.
 
-- **A** = amizade, **R** = romance.
-- Valores positivos aparecem em **verde**, negativos em **vermelho**.
-- Resposta sem efeito fica sem prefixo.
+## Mods
 
-O efeito é calculado **durante o jogo**, com o estado atual. Assim, respostas
-condicionais mostram o resultado certo para o momento. Exemplo real, com a
-Katherine: "So how about letting me get you that drink now?" mostra `-1A -1R`
-antes de você ver um certo diálogo dela e `+1A +1R` depois.
+| Mod | O que faz | Download |
+|---|---|---|
+| [RelationshipHints](mods/RelationshipHints/README.md) | Mostra no menu de respostas o efeito de cada opção na amizade e no romance (`+1A -1R \| Texto`) | [Releases](../../releases?q=RelationshipHints&expanded=true) |
 
-O mod não altera nenhum arquivo do jogo, nem `.character` nem os arquivos de
-idioma. Ele só muda o texto exibido no menu, então funciona com qualquer
-idioma, inclusive com traduções da comunidade.
+## Compatibilidade
 
-## Marcadores
+Os mods são desenvolvidos e testados neste ambiente:
 
-| Marcador | Significado |
+| Componente | Versão |
 |---|---|
-| `+1A`, `-2R` | soma ou subtrai pontos de amizade ou romance |
-| `?A`, `?R` | há efeito, mas não dá para prever com segurança (por exemplo, depende de sorteio) |
-| `=5A` | define a relação com um valor fixo, em vez de somar |
-| `Madison: -3A` | efeito na relação com outro personagem, não com quem está falando |
+| House Party (Steam, Windows) | 1.5.2.14289 |
+| Unity | 2022.3.62f2 (IL2CPP) |
+| MelonLoader | 0.7.3 Open-Beta (runtime net6) |
+
+Outras versões do MelonLoader 0.7.x devem funcionar. Atualizações do jogo
+podem quebrar os mods. Se isso acontecer, o mod registra o erro no log e o
+jogo segue normalmente, só sem o recurso do mod. A versão do seu jogo aparece
+no início do `MelonLoader\Latest.log`, na linha `Game Version`. O README de
+cada mod informa em qual versão ele foi testado por último.
 
 ## Instalação
 
@@ -44,57 +42,18 @@ idioma, inclusive com traduções da comunidade.
      `force_offline_generation = false` por `true` e abra o jogo de novo. O
      mapa de desofuscação que o MelonLoader tenta baixar é de uma versão
      antiga do jogo e não é necessário.
-3. Baixe o `RelationshipHints.dll` na página de
-   [Releases](../../releases) e coloque na pasta `Mods` do jogo, a que fica na
-   raiz da instalação, não a `HouseParty_Data\StreamingAssets\Mods`.
-4. Abra o jogo e converse com alguém.
+3. Baixe a DLL de cada mod que quiser (tabela acima) e coloque na pasta `Mods`
+   do jogo, a que fica na raiz da instalação, não a
+   `HouseParty_Data\StreamingAssets\Mods`.
+
+As configurações dos mods ficam em `UserData\MelonPreferences.cfg`, criado
+depois da primeira execução.
 
 ### Desinstalar
 
-Apague o `Mods\RelationshipHints.dll`. Para remover também o MelonLoader,
-apague o `version.dll` e as pastas `MelonLoader`, `Mods`, `Plugins`,
-`UserData` e `UserLibs` da raiz do jogo.
-
-## Configuração
-
-Depois da primeira execução, o arquivo `UserData\MelonPreferences.cfg` ganha a
-seção:
-
-```toml
-[RelationshipHints]
-DiagnosticLog = false
-```
-
-Com `DiagnosticLog = true`, o mod registra em `MelonLoader\Latest.log`, a cada
-menu, o efeito previsto de cada resposta e o caminho que levou a ele. A cada
-escolha, compara a previsão com a mudança real de relação aplicada pelo jogo e
-marca `OK`, `DIVERGE` ou `INCERTO`. Se encontrar um marcador errado, ligue essa
-opção, reproduza o caso e anexe o log ao abrir uma issue.
-
-## Como o efeito é calculado
-
-Para cada resposta exibida, o mod percorre os mesmos dados que o jogo usa:
-
-1. os eventos da própria resposta (`ResponseEvents`);
-2. os desvios de diálogo (evento 120) que ela dispara, avaliando as condições
-   com o avaliador de critérios do próprio jogo. Quando o desvio vai para o
-   próprio personagem, ele substitui o `Next`, como no jogo;
-3. o diálogo seguinte (`Next`): eventos de abertura (`StartEvents`) e de
-   fechamento (`CloseEvents`).
-
-No diálogo 0, a conversa "ociosa" do personagem, só contam os eventos de
-relação. Os desvios dele escolhem o que o NPC diz, independentemente da sua
-escolha.
-
-O efeito vira `?` quando há critério aleatório (`CoinFlip`) ou quando a
-condição depende de algo que a própria resposta muda antes de ser avaliada.
-
-### Limitações conhecidas
-
-- Os caminhos de `CloseEvents` e de efeito em outros personagens ainda foram
-  pouco testados no jogo.
-- Traduções que já trazem marcadores de relação embutidos no texto vão
-  aparecer com o marcador duplicado.
+Para remover um mod, apague a DLL dele da pasta `Mods`. Para remover também o
+MelonLoader, apague o `version.dll` e as pastas `MelonLoader`, `Mods`,
+`Plugins`, `UserData` e `UserLibs` da raiz do jogo.
 
 ## Compilar a partir do código
 
@@ -103,16 +62,19 @@ o jogo com o MelonLoader já instalado e executado uma vez, porque a compilaçã
 usa os assemblies gerados por ele.
 
 ```sh
-cd RelationshipHints
-dotnet build -c Release
+dotnet build HousePartyMods.slnx -c Release
 # se o jogo estiver em outra pasta:
-dotnet build -c Release -p:GameDir="D:\Jogos\House Party"
+dotnet build HousePartyMods.slnx -c Release -p:GameDir="D:\Jogos\House Party"
 ```
 
-A DLL sai em `RelationshipHints\bin\Release\net6.0\`.
+Cada DLL sai em `mods\<Mod>\bin\Release\net6.0\`.
 
-A pasta `tools/` tem scripts Python usados para analisar os arquivos
-`.character` durante o desenvolvimento.
+Estrutura:
+
+- `mods/`: um projeto por mod, cada um com seu README;
+- `Directory.Build.props`: pasta do jogo e referências comuns a todos os mods;
+- `tools/`: scripts Python usados para analisar os arquivos `.character`;
+- [IDEIAS.md](IDEIAS.md): ideias de novos mods em avaliação.
 
 ## Aviso
 

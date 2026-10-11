@@ -1,35 +1,33 @@
-# RelationshipHints: a House Party mod
+# House Party mods
 
 *[Versão em português](README.md)*
 
-Shows, before each option in the reply menu, the effect it will have on your
-relationship with the character:
+Mods for [House Party](https://store.steampowered.com/app/611790/House_Party/)
+(Eek! Games), built with [MelonLoader](https://github.com/LavaGang/MelonLoader).
 
-```
-+1A -1R | I like your glasses. They make you look smart!
-```
+Each mod is a standalone DLL: install only the ones you want.
 
-- **A** = friendship (*amizade*), **R** = romance.
-- Positive values are shown in **green**, negative ones in **red**.
-- Replies with no effect get no prefix.
+## Mods
 
-The effect is calculated **at runtime**, from the current game state, so
-conditional replies show the right result for the moment. Real example with
-Katherine: "So how about letting me get you that drink now?" shows `-1A -1R`
-before you have seen a certain dialogue of hers, and `+1A +1R` after.
+| Mod | What it does | Download |
+|---|---|---|
+| [RelationshipHints](mods/RelationshipHints/README.en.md) | Shows each reply's effect on friendship and romance in the reply menu (`+1A -1R \| Text`) | [Releases](../../releases?q=RelationshipHints&expanded=true) |
 
-The mod does not change any game file, neither `.character` nor language
-files. It only changes the text shown in the menu, so it works with any
-language, including community translations.
+## Compatibility
 
-## Markers
+The mods are developed and tested on:
 
-| Marker | Meaning |
+| Component | Version |
 |---|---|
-| `+1A`, `-2R` | adds or subtracts friendship or romance points |
-| `?A`, `?R` | there is an effect, but it can't be predicted safely (e.g. it depends on a random roll) |
-| `=5A` | sets the relationship to a fixed value instead of adding |
-| `Madison: -3A` | effect on the relationship with another character, not the one you're talking to |
+| House Party (Steam, Windows) | 1.5.2.14289 |
+| Unity | 2022.3.62f2 (IL2CPP) |
+| MelonLoader | 0.7.3 Open-Beta (net6 runtime) |
+
+Other MelonLoader 0.7.x versions should work. Game updates may break the mods.
+If that happens, the mod logs the error and the game keeps running normally,
+just without the mod's feature. Your game version is shown near the top of
+`MelonLoader\Latest.log`, on the `Game Version` line. Each mod's README states
+the version it was last tested on.
 
 ## Installation
 
@@ -44,57 +42,18 @@ language, including community translations.
      `force_offline_generation = false` to `true` and start the game again.
      The deobfuscation map MelonLoader tries to download is for an older game
      version and isn't needed.
-3. Download `RelationshipHints.dll` from [Releases](../../releases) and put it
-   in the game's `Mods` folder, the one at the root of the install, not
+3. Download the DLL of each mod you want (table above) and put it in the
+   game's `Mods` folder, the one at the root of the install, not
    `HouseParty_Data\StreamingAssets\Mods`.
-4. Start the game and talk to someone.
+
+Mod settings live in `UserData\MelonPreferences.cfg`, created after the first
+run.
 
 ### Uninstall
 
-Delete `Mods\RelationshipHints.dll`. To also remove MelonLoader, delete
-`version.dll` and the `MelonLoader`, `Mods`, `Plugins`, `UserData` and
-`UserLibs` folders from the game root.
-
-## Configuration
-
-After the first run, `UserData\MelonPreferences.cfg` gets this section:
-
-```toml
-[RelationshipHints]
-DiagnosticLog = false
-```
-
-With `DiagnosticLog = true`, the mod writes to `MelonLoader\Latest.log`, for
-each menu, the predicted effect of each reply and the path that led to it. On
-each choice, it compares the prediction with the actual relationship change
-the game applied and tags it `OK`, `DIVERGE` or `INCERTO` (uncertain). If you
-find a wrong marker, turn this on, reproduce the case and attach the log when
-you open an issue.
-
-## How the effect is calculated
-
-For each reply shown, the mod walks the same data the game uses:
-
-1. the reply's own events (`ResponseEvents`);
-2. the dialogue redirects (event 120) it triggers, with conditions evaluated
-   by the game's own criteria evaluator. A redirect to the same character
-   replaces `Next`, as it does in the game;
-3. the next dialogue (`Next`): its start events (`StartEvents`) and close
-   events (`CloseEvents`).
-
-In dialogue 0, the character's "idle" conversation, only relationship events
-count. Its redirects pick what the NPC says regardless of your choice.
-
-The effect becomes `?` when there is a random criterion (`CoinFlip`) or when
-the condition depends on something the reply itself changes before it is
-evaluated.
-
-### Known limitations
-
-- The `CloseEvents` path and effects on other characters have had little
-  in-game testing so far.
-- Translations that already embed relationship markers in the text will show
-  the marker twice.
+To remove a mod, delete its DLL from the `Mods` folder. To also remove
+MelonLoader, delete `version.dll` and the `MelonLoader`, `Mods`, `Plugins`,
+`UserData` and `UserLibs` folders from the game root.
 
 ## Building from source
 
@@ -103,16 +62,19 @@ and the game with MelonLoader installed and run once, because the build uses
 the assemblies it generates.
 
 ```sh
-cd RelationshipHints
-dotnet build -c Release
+dotnet build HousePartyMods.slnx -c Release
 # if the game is in another folder:
-dotnet build -c Release -p:GameDir="D:\Games\House Party"
+dotnet build HousePartyMods.slnx -c Release -p:GameDir="D:\Games\House Party"
 ```
 
-The DLL ends up in `RelationshipHints\bin\Release\net6.0\`.
+Each DLL ends up in `mods\<Mod>\bin\Release\net6.0\`.
 
-The `tools/` folder has Python scripts used to analyze the `.character` files
-during development.
+Layout:
+
+- `mods/`: one project per mod, each with its own README;
+- `Directory.Build.props`: game folder and references shared by all mods;
+- `tools/`: Python scripts used to analyze the `.character` files;
+- [IDEIAS.md](IDEIAS.md): new mod ideas under evaluation (in Portuguese).
 
 ## Disclaimer
 
