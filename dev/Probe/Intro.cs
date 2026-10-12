@@ -20,7 +20,8 @@ namespace Probe
         public static void Init()
         {
             var category = MelonPreferences.CreateCategory("Probe");
-            _skip = category.CreateEntry("SkipIntro", false);
+            _skip = category.CreateEntry("SkipIntro", false, display_name: "Pular aberturas (teste)",
+                description: "Testa o pulo do vídeo e do aviso pela própria sonda; o mod SkipIntro já faz isso.");
         }
 
         public static void OnSceneLoaded(int buildIndex, string name)

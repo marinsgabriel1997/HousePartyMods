@@ -9,4 +9,5 @@
   presente.
 - Marcas guardadas com cada save, num arquivo `.newtalkmarker` na pasta de
   saves, e restauradas ao carregá-lo.
-- Opções `MaxDistance` e `DiagnosticLog`.
+- Opções `MaxDistance` e `DiagnosticLog`, com nome e descrição em português
+  ou inglês, conforme o idioma do jogo, para aparecerem no ModSettings.

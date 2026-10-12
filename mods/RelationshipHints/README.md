@@ -9,7 +9,8 @@ relação com o personagem:
 +1A -1R | I like your glasses. They make you look smart!
 ```
 
-- **A** = amizade, **R** = romance.
+- **A** = amizade, **R** = romance. Com o jogo em outro idioma, a amizade
+  aparece como **F** (*friendship*).
 - Valores positivos aparecem em **verde**, negativos em **vermelho**.
 - Resposta sem efeito fica sem prefixo.
 
@@ -48,7 +49,8 @@ Para desinstalar, apague o `Mods\RelationshipHints.dll`.
 
 ## Configuração
 
-Em `UserData\MelonPreferences.cfg`:
+Pela janela do [ModSettings](../ModSettings/README.md) (`F6`), com os nomes
+das opções no idioma do jogo, ou em `UserData\MelonPreferences.cfg`:
 
 ```toml
 [RelationshipHints]

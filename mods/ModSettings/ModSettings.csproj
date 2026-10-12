@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!-- TargetFramework, GameDir e referências comuns vêm do Directory.Build.props da raiz. -->
+  <PropertyGroup>
+    <AssemblyName>ModSettings</AssemblyName>
+    <RootNamespace>ModSettings</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Reference Include="$(Il2CppAssembliesDir)\Il2CppEekEvents.dll" Private="false" />
+    <Reference Include="$(Il2CppAssembliesDir)\Il2CppEekCharacterEngine.dll" Private="false" />
+    <Reference Include="$(Il2CppAssembliesDir)\UnityEngine.IMGUIModule.dll" Private="false" />
+    <Reference Include="$(Il2CppAssembliesDir)\UnityEngine.TextRenderingModule.dll" Private="false" />
+    <Reference Include="$(Il2CppAssembliesDir)\UnityEngine.InputLegacyModule.dll" Private="false" />
+    <Reference Include="$(Il2CppAssembliesDir)\Unity.InputSystem.dll" Private="false" />
+  </ItemGroup>
+
+</Project>

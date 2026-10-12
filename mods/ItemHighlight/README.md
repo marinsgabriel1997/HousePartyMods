@@ -28,6 +28,8 @@ em tudo. São dois destaques independentes, cada um com sua tecla:
   não funcionam nesses momentos, para não alternar ao digitar o nome de um
   save.
 - Ao desligar o brilho, os itens voltam à aparência original.
+- Os nomes seguem o idioma escolhido no jogo, com as traduções do próprio
+  jogo; item sem tradução aparece com o nome em inglês.
 
 O mod não altera nenhum arquivo do jogo nem os saves.
 
@@ -48,7 +50,8 @@ Para desinstalar, apague o `Mods\ItemHighlight.dll`.
 
 ## Configuração
 
-Em `UserData\MelonPreferences.cfg`:
+Pela janela do [ModSettings](../ModSettings/README.md) (`F6`), com os nomes
+das opções no idioma do jogo, ou em `UserData\MelonPreferences.cfg`:
 
 ```toml
 [ItemHighlight]

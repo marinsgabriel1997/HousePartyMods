@@ -15,6 +15,7 @@ Cada mod é uma DLL independente: instale só os que quiser.
 | [NewTalkMarker](mods/NewTalkMarker/README.md) | Mostra um "!" sobre o personagem quando surge uma fala nova para ele | [Releases](../../releases?q=NewTalkMarker&expanded=true) |
 | [ItemHighlight](mods/ItemHighlight/README.md) | Mostra o nome dos itens à vista e faz brilhar os que podem ser pegos, cada um com sua tecla | [Releases](../../releases?q=ItemHighlight&expanded=true) |
 | [SkipIntro](mods/SkipIntro/README.md) | Abre o jogo direto no menu principal, sem o vídeo da Eek! Games e o aviso | [Releases](../../releases?q=SkipIntro&expanded=true) |
+| [ModSettings](mods/ModSettings/README.md) | Janela no jogo (`F6`) para ajustar as opções dos mods, gravadas na hora | [Releases](../../releases?q=ModSettings&expanded=true) |
 
 ## Compatibilidade
 
@@ -50,7 +51,9 @@ cada mod informa em qual versão ele foi testado por último.
    `HouseParty_Data\StreamingAssets\Mods`.
 
 As configurações dos mods ficam em `UserData\MelonPreferences.cfg`, criado
-depois da primeira execução.
+depois da primeira execução. Com o [ModSettings](mods/ModSettings/README.md),
+dá para ajustá-las dentro do jogo, sem editar o arquivo. Os textos dos mods
+seguem o idioma do jogo: português ou, nos demais idiomas, inglês.
 
 ### Desinstalar
 

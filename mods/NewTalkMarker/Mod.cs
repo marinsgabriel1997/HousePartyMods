@@ -49,16 +49,20 @@ namespace NewTalkMarker
         {
             Log = LoggerInstance;
             MelonPreferences_Category category = MelonPreferences.CreateCategory("NewTalkMarker");
-            MaxDistance = category.CreateEntry("MaxDistance", 25f,
-                description: "Distância máxima (metros) para mostrar o \"!\" sobre um personagem.");
-            _diagnosticLog = category.CreateEntry("DiagnosticLog", false,
-                description: "Registra no log cada mudança de marca, com a fala e os critérios dela.");
+            MaxDistance = Lang.Entry(category.CreateEntry("MaxDistance", 25f),
+                "Distância máxima (metros)", "Distância máxima (metros) para mostrar o \"!\" sobre um personagem.",
+                "Maximum distance (meters)", "Maximum distance (meters) to show the \"!\" above a character.");
+            _diagnosticLog = Lang.Entry(category.CreateEntry("DiagnosticLog", false),
+                "Registro de diagnóstico", "Registra no log cada mudança de marca, com a fala e os critérios dela.",
+                "Diagnostic log", "Logs every marker change, with the line and its criteria (log in Portuguese).");
             SaveCycle.Init();
             Log.Msg("Carregado.");
         }
 
         public override void OnUpdate()
         {
+            try { Lang.Tick(); }
+            catch (Exception ex) { ReportError(nameof(Lang), ex); }
             try { Scanner.Tick(); }
             catch (Exception ex) { ReportError(nameof(Scanner), ex); }
         }

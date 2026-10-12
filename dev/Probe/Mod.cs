@@ -18,8 +18,9 @@ using UnityEngine;
 namespace Probe
 {
     // Sonda de desenvolvimento (não é publicada). F7 grava em UserData/Probe/
-    // o que o jogo sabe sobre itens do cenário e falas liberadas, para avaliar
-    // as ideias do IDEIAS.md com dados reais.
+    // o que o jogo sabe sobre itens do cenário, falas liberadas e teclas, para
+    // avaliar as ideias do IDEIAS.md com dados reais. Shift+F7 abre a janela
+    // de teste do IMGUI.
     public class Mod : MelonMod
     {
         internal static MelonLogger.Instance Log;
@@ -29,7 +30,9 @@ namespace Probe
         {
             Log = LoggerInstance;
             Intro.Init();
-            Log.Msg("Carregado. F7 grava o relatório em UserData/Probe/.");
+            Keys.Init(HarmonyInstance);
+            Language.Log("OnInitializeMelon");
+            Log.Msg("Carregado. F7 grava o relatório em UserData/Probe/; Shift+F7 abre a janela de teste.");
         }
 
         public override void OnLateInitializeMelon()
@@ -43,6 +46,8 @@ namespace Probe
 
         public override void OnSceneWasLoaded(int buildIndex, string sceneName)
         {
+            try { Language.Log($"cena {sceneName}"); }
+            catch (Exception ex) { Log.Error($"Erro no idioma: {ex}"); }
             try { Intro.OnSceneLoaded(buildIndex, sceneName); }
             catch (Exception ex) { Log.Error($"Erro ao registrar cena: {ex}"); }
         }
@@ -52,16 +57,56 @@ namespace Probe
             try { Watcher.Tick(); }
             catch (Exception ex) { Log.Error($"Erro na vigia: {ex}"); }
 
+            try { Language.Tick(); }
+            catch (Exception ex) { Log.Error($"Erro no idioma: {ex}"); }
+            try { TestWindow.Tick("Update"); }
+            catch (Exception ex) { Log.Error($"Erro na janela de teste: {ex}"); }
+
             if (!F7Pressed())
                 return;
+            if (ShiftHeld())
+            {
+                try { TestWindow.Toggle(); }
+                catch (Exception ex) { Log.Error($"Erro na janela de teste: {ex}"); }
+                return;
+            }
             try { Dump(); }
             catch (Exception ex) { Log.Error($"Erro no relatório: {ex}"); }
+        }
+
+        public override void OnLateUpdate()
+        {
+            try { TestWindow.Tick("LateUpdate"); }
+            catch (Exception ex) { Log.Error($"Erro na janela de teste: {ex}"); }
+        }
+
+        public override void OnGUI()
+        {
+            TestWindow.OnGUI();
+        }
+
+        private static bool ShiftHeld()
+        {
+            Keys.Self = true;
+            try
+            {
+                var keyboard = UnityEngine.InputSystem.Keyboard.current;
+                return keyboard != null && (keyboard.leftShiftKey.isPressed || keyboard.rightShiftKey.isPressed);
+            }
+            finally { Keys.Self = false; }
         }
 
         // F8 abre o mapeamento de controles do jogo e F9 é o salvamento rápido; por isso F7.
         // O jogo pode ter só o Input System novo ativo; nesse caso o Input
         // antigo lança exceção e passamos a usar o novo.
         private static bool F7Pressed()
+        {
+            Keys.Self = true;
+            try { return F7PressedNow(); }
+            finally { Keys.Self = false; }
+        }
+
+        private static bool F7PressedNow()
         {
             if (!_legacyInputBroken)
             {
@@ -82,6 +127,9 @@ namespace Probe
             report.AppendLine($"Probe {DateTime.Now:yyyy-MM-dd HH:mm:ss}");
             DumpItems(report);
             DumpDialogues(report);
+            Language.Dump(report);
+            Keys.Dump(report);
+            Keys.DumpPreferences(report);
 
             string dir = Path.Combine(MelonEnvironment.UserDataDirectory, "Probe");
             Directory.CreateDirectory(dir);

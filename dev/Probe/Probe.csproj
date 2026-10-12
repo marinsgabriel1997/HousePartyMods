@@ -10,6 +10,8 @@
     <Reference Include="$(Il2CppAssembliesDir)\Il2CppEekEvents.dll" Private="false" />
     <Reference Include="$(Il2CppAssembliesDir)\Il2CppEekCharacterEngine.dll" Private="false" />
     <Reference Include="$(Il2CppAssembliesDir)\Il2CppHouseParty.dll" Private="false" />
+    <Reference Include="$(Il2CppAssembliesDir)\UnityEngine.IMGUIModule.dll" Private="false" />
+    <Reference Include="$(Il2CppAssembliesDir)\UnityEngine.TextRenderingModule.dll" Private="false" />
     <Reference Include="$(Il2CppAssembliesDir)\UnityEngine.InputLegacyModule.dll" Private="false" />
     <Reference Include="$(Il2CppAssembliesDir)\Unity.InputSystem.dll" Private="false" />
   </ItemGroup>

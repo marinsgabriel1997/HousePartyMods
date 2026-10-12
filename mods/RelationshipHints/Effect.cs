@@ -62,7 +62,8 @@ namespace RelationshipHints
         private static string FormatDelta(RelationDelta d, FormatMode mode)
         {
             var tokens = new List<string>();
-            Append(tokens, d.Friendship, d.FriendshipSet, d.FriendshipUncertain, "A", mode);
+            // Amizade: A em português, F (friendship) nos demais idiomas.
+            Append(tokens, d.Friendship, d.FriendshipSet, d.FriendshipUncertain, Lang.T("A", "F"), mode);
             Append(tokens, d.Romance, d.RomanceSet, d.RomanceUncertain, "R", mode);
             return string.Join(" ", tokens);
         }

@@ -43,8 +43,9 @@ namespace RelationshipHints
         {
             Log = LoggerInstance;
             MelonPreferences_Category category = MelonPreferences.CreateCategory("RelationshipHints");
-            _diagnosticLog = category.CreateEntry("DiagnosticLog", false,
-                description: "Registra no log o efeito previsto de cada resposta e o compara com a mudança real de relação.");
+            _diagnosticLog = Lang.Entry(category.CreateEntry("DiagnosticLog", false),
+                "Registro de diagnóstico", "Registra no log o efeito previsto de cada resposta e o compara com a mudança real de relação.",
+                "Diagnostic log", "Logs the predicted effect of each reply and compares it with the actual relationship change (log in Portuguese).");
             Log.Msg("Carregado.");
         }
 
@@ -59,6 +60,8 @@ namespace RelationshipHints
 
         public override void OnUpdate()
         {
+            try { Lang.Tick(); }
+            catch (Exception ex) { ReportError(nameof(Lang), ex); }
             Tracker.CheckTimeout();
         }
     }

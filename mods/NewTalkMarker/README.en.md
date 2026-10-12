@@ -51,7 +51,8 @@ the save folder can be deleted.
 
 ## Settings
 
-In `UserData\MelonPreferences.cfg`:
+Through the [ModSettings](../ModSettings/README.en.md) window (`F6`), with
+setting names in the game language, or in `UserData\MelonPreferences.cfg`:
 
 ```toml
 [NewTalkMarker]

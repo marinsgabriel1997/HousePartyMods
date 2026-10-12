@@ -28,6 +28,8 @@ own key:
   back afterwards. The keys don't work at those moments, so typing a save
   name doesn't toggle them.
 - Turning the glow off restores the items' original look.
+- Names follow the language chosen in the game, using the game's own
+  translations; items without a translation show their English name.
 
 The mod doesn't change any game file or save.
 
@@ -48,7 +50,8 @@ To uninstall, delete `Mods\ItemHighlight.dll`.
 
 ## Settings
 
-In `UserData\MelonPreferences.cfg`:
+Through the [ModSettings](../ModSettings/README.en.md) window (`F6`), with
+setting names in the game language, or in `UserData\MelonPreferences.cfg`:
 
 ```toml
 [ItemHighlight]

@@ -55,29 +55,47 @@ namespace ItemHighlight
         {
             Log = LoggerInstance;
             MelonPreferences_Category category = MelonPreferences.CreateCategory("ItemHighlight");
-            var labelsKey = category.CreateEntry("LabelsKey", "H",
-                description: "Tecla que mostra e esconde o nome dos itens (nome do KeyCode do Unity, por exemplo H, G, F6).");
-            var glowKey = category.CreateEntry("GlowKey", "J",
-                description: "Tecla que passa pelos níveis do brilho (0,3, 0,6, 1,2, 2,5 e 5) e depois o desliga (nome do KeyCode do Unity).");
-            var startLabels = category.CreateEntry("StartLabels", false,
-                description: "Se os nomes começam ligados ao abrir o jogo.");
-            var startGlow = category.CreateEntry("StartGlow", false,
-                description: "Se o brilho começa ligado, no primeiro nível, ao abrir o jogo.");
-            _glowUse = category.CreateEntry("GlowUse", false,
-                description: "Faz brilhar também os itens de uso (fogão, lixeira...), além dos coletáveis.");
+            var labelsKey = Lang.Entry(category.CreateEntry("LabelsKey", "H"),
+                "Tecla dos nomes", "Tecla que mostra e esconde o nome dos itens (nome do KeyCode do Unity, por exemplo H, G, F6).",
+                "Names key", "Key that shows and hides item names (Unity KeyCode name, for example H, G, F6).");
+            var glowKey = Lang.Entry(category.CreateEntry("GlowKey", "J"),
+                "Tecla do brilho", "Tecla que passa pelos níveis do brilho (0,3, 0,6, 1,2, 2,5 e 5) e depois o desliga (nome do KeyCode do Unity).",
+                "Glow key", "Key that steps through the glow levels (0.3, 0.6, 1.2, 2.5 and 5) and then turns it off (Unity KeyCode name).");
+            var startLabels = Lang.Entry(category.CreateEntry("StartLabels", false),
+                "Nomes ligados ao abrir o jogo", "Se os nomes começam ligados ao abrir o jogo.",
+                "Names on at startup", "Whether names start turned on when the game opens.");
+            var startGlow = Lang.Entry(category.CreateEntry("StartGlow", false),
+                "Brilho ligado ao abrir o jogo", "Se o brilho começa ligado, no primeiro nível, ao abrir o jogo.",
+                "Glow on at startup", "Whether the glow starts on, at the first level, when the game opens.");
+            _glowUse = Lang.Entry(category.CreateEntry("GlowUse", false),
+                "Brilho também nos itens de uso", "Faz brilhar também os itens de uso (fogão, lixeira...), além dos coletáveis.",
+                "Glow on usable items too", "Also makes usable items glow (stove, trash can...), besides collectibles.");
             // Na ordem de Category.
             _show = new[]
             {
-                category.CreateEntry("ShowCollectible", true, description: "Destaca itens que podem ser pegos (nome dourado)."),
-                category.CreateEntry("ShowUse", true, description: "Destaca itens com outras ações, como beber, ligar ou vasculhar (nome ciano)."),
-                category.CreateEntry("ShowOpenClose", false, description: "Destaca portas, gavetas e armários (nome verde-claro)."),
-                category.CreateEntry("ShowPosition", false, description: "Destaca onde sentar, deitar ou subir (nome cinza-claro)."),
-                category.CreateEntry("ShowInspect", false, description: "Destaca itens que só podem ser examinados (nome branco)."),
+                Lang.Entry(category.CreateEntry("ShowCollectible", true),
+                    "Itens que podem ser pegos", "Destaca itens que podem ser pegos (nome dourado).",
+                    "Items you can pick up", "Highlights items you can pick up (gold name)."),
+                Lang.Entry(category.CreateEntry("ShowUse", true),
+                    "Itens de uso", "Destaca itens com outras ações, como beber, ligar ou vasculhar (nome ciano).",
+                    "Usable items", "Highlights items with other actions, such as drink, turn on or search (cyan name)."),
+                Lang.Entry(category.CreateEntry("ShowOpenClose", false),
+                    "Portas, gavetas e armários", "Destaca portas, gavetas e armários (nome verde-claro).",
+                    "Doors, drawers and cabinets", "Highlights doors, drawers and cabinets (light green name)."),
+                Lang.Entry(category.CreateEntry("ShowPosition", false),
+                    "Lugares para sentar e deitar", "Destaca onde sentar, deitar ou subir (nome cinza-claro).",
+                    "Places to sit and lie down", "Highlights where to sit, lie down or climb (light gray name)."),
+                Lang.Entry(category.CreateEntry("ShowInspect", false),
+                    "Itens só para examinar", "Destaca itens que só podem ser examinados (nome branco).",
+                    "Inspect-only items", "Highlights items that can only be inspected (white name)."),
             };
             LabelsVisible = startLabels.Value;
             _glowLevel = startGlow.Value ? 0 : -1;
             _labelsKey = new HotKey("LabelsKey", labelsKey.Value, KeyCode.H);
             _glowKey = new HotKey("GlowKey", glowKey.Value, KeyCode.J);
+            // A tecla nova vale na hora quando a opção muda com o jogo aberto.
+            labelsKey.OnEntryValueChanged.Subscribe((_, value) => _labelsKey = new HotKey("LabelsKey", value, KeyCode.H));
+            glowKey.OnEntryValueChanged.Subscribe((_, value) => _glowKey = new HotKey("GlowKey", value, KeyCode.J));
             Log.Msg($"Carregado. {_labelsKey.Name} mostra e esconde os nomes; {_glowKey.Name} passa pelos níveis do brilho.");
         }
 
@@ -92,6 +110,12 @@ namespace ItemHighlight
         {
             try
             {
+                // Os nomes guardados estão no idioma anterior; lê de novo.
+                if (Lang.Tick())
+                {
+                    Glow.RestoreAll();
+                    Items.Clear();
+                }
                 // Em pausa e menus as teclas são ignoradas, para não alternar ao digitar o nome de um save.
                 bool hidden = Highlighter.Hidden();
                 if (!hidden && _labelsKey.Pressed())
@@ -264,6 +288,23 @@ namespace ItemHighlight
             }
         }
 
+        // O jogo guarda o nome em inglês e o traduz para o idioma escolhido
+        // (confirmado no jogo: "Flask" vira "Cantil"); sem tradução, o nome
+        // volta igual. Vale para todos os idiomas do jogo.
+        private static string Translate(string name)
+        {
+            try
+            {
+                string translated = TranslationManager.TranslateByText(name, Lang.Current);
+                return string.IsNullOrWhiteSpace(translated) ? name : translated;
+            }
+            catch (Exception ex)
+            {
+                Mod.ReportError(nameof(Translate), ex);
+                return name;
+            }
+        }
+
         private static void Read(Entry entry, StoryData story)
         {
             InteractiveItem item = entry.Item;
@@ -285,7 +326,7 @@ namespace ItemHighlight
                 return;
 
             string name = item.DisplayName;
-            entry.Name = string.IsNullOrWhiteSpace(name) ? item.gameObject.name : name;
+            entry.Name = string.IsNullOrWhiteSpace(name) ? item.gameObject.name : Translate(name);
             // Portas e assentos não têm renderer próprio (IsRendererEnabled falso).
             if (entry.Renderer == null)
                 entry.Renderer = item.GetComponentInChildren<Renderer>();

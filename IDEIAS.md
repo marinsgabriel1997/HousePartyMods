@@ -103,3 +103,27 @@ Modelo:
   - Qual componente espera o clique e como o jogo recebe a confirmação.
   - Se a pausa tem função (dicas na tela, carregamento ainda em andamento).
   - Novo jogo também carrega no mesmo modelo de duas telas com click.
+
+## Menu de configurações dos mods
+
+- **Status:** em desenvolvimento (`mods/ModSettings`, plano
+  `planos/executados/p40-menu-de-configuracoes.md`)
+- **O que faz:** `F6` abre uma janela com os mods instalados e suas opções,
+  que valem e ficam gravadas na hora, em português ou inglês conforme o
+  idioma do jogo. Detalhes no README do mod.
+- **Confirmado no jogo** (2026-10-12):
+  - O menu encontra sozinho as opções que os mods registram no
+    MelonPreferences; nenhum mod depende dele.
+  - Do IMGUI, sobraram `Window`, `Button`, `Toggle`, `Box` e `Label`;
+    `TextField`, sliders, `ScrollView` e `GUILayout` foram removidos, e o
+    campo de texto e a rolagem são feitos à mão.
+  - Sem bloqueio, o jogo reage ao mouse e às teclas por baixo da janela. A
+    janela abre a pausa do jogo (evento `PlayerControlManager.OnInput_Options`,
+    o mesmo do `Esc`) e desliga as ações do Input System enquanto está aberta.
+  - `TranslationManager.languageCurrent` vale `"English"` até o menu
+    principal; `TranslateByText` traduz os nomes dos itens.
+  - Teclas do jogo levantadas em `docs/teclas-do-jogo.md` (`F10` salva o
+    jogo; por isso `F6`).
+- **Dúvidas / o que investigar:**
+  - Um botão "Mods" no menu do jogo.
+  - Mostrar também os mods sem opções.

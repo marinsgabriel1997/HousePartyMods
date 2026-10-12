@@ -52,7 +52,8 @@ Para desinstalar, apague o `Mods\NewTalkMarker.dll`. Os arquivos
 
 ## Configuração
 
-Em `UserData\MelonPreferences.cfg`:
+Pela janela do [ModSettings](../ModSettings/README.md) (`F6`), com os nomes
+das opções no idioma do jogo, ou em `UserData\MelonPreferences.cfg`:
 
 ```toml
 [NewTalkMarker]
