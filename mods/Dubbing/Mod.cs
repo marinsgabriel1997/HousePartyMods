@@ -7,7 +7,7 @@ using Il2CppEekEvents.Characters;
 using MelonLoader;
 using UnityEngine;
 
-[assembly: MelonInfo(typeof(Dubbing.Mod), "Dubbing", "0.1.0", "gabriel")]
+[assembly: MelonInfo(typeof(Dubbing.Mod), "Dubbing", "1.0.0", "gabriel")]
 [assembly: MelonGame("Eek", "House Party")]
 
 namespace Dubbing

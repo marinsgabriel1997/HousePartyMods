@@ -9,7 +9,7 @@ using Il2CppInterop.Runtime.InteropTypes.Arrays;
 using MelonLoader;
 using UnityEngine;
 
-[assembly: MelonInfo(typeof(Jump.Mod), "Jump", "0.1.0", "gabriel")]
+[assembly: MelonInfo(typeof(Jump.Mod), "Jump", "1.0.0", "gabriel")]
 [assembly: MelonGame("Eek", "House Party")]
 
 namespace Jump

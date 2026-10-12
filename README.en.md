@@ -11,7 +11,7 @@ Each mod is a standalone DLL: install only the ones you want.
 
 | Mod | What it does | Download |
 |---|---|---|
-| [RelationshipHints](mods/RelationshipHints/README.en.md) | Shows each reply's effect on friendship and romance in the reply menu (`+1A -1R \| Text`) | [Releases](../../releases?q=RelationshipHints&expanded=true) |
+| [RelationshipHints](mods/RelationshipHints/README.en.md) | Shows each reply's effect on friendship and romance in the reply menu (`+1F -1R \| Text`) | [Releases](../../releases?q=RelationshipHints&expanded=true) |
 | [NewTalkMarker](mods/NewTalkMarker/README.en.md) | Shows a "!" above a character when a new line becomes available for them | [Releases](../../releases?q=NewTalkMarker&expanded=true) |
 | [ItemHighlight](mods/ItemHighlight/README.en.md) | Shows the names of items in view and makes the ones you can pick up glow, each with its own key | [Releases](../../releases?q=ItemHighlight&expanded=true) |
 | [SkipIntro](mods/SkipIntro/README.en.md) | Opens the game straight to the main menu, without the Eek! Games video and the disclaimer | [Releases](../../releases?q=SkipIntro&expanded=true) |

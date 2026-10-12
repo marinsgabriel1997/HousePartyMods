@@ -8,7 +8,7 @@ using Il2CppEekEvents.Stories;
 using MelonLoader;
 using UnityEngine;
 
-[assembly: MelonInfo(typeof(ItemHighlight.Mod), "ItemHighlight", "0.1.0", "gabriel")]
+[assembly: MelonInfo(typeof(ItemHighlight.Mod), "ItemHighlight", "1.0.0", "gabriel")]
 [assembly: MelonGame("Eek", "House Party")]
 
 namespace ItemHighlight

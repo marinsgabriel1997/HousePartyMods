@@ -14,7 +14,7 @@ using Il2CppCriteriaList = Il2CppSystem.Collections.Generic.List<Il2CppEekEvents
 using Il2CppIResponseList = Il2CppSystem.Collections.Generic.List<Il2CppEekEvents.IResponse>;
 using Il2CppResponseList = Il2CppSystem.Collections.Generic.List<Il2CppEekEvents.Dialogues.Response>;
 
-[assembly: MelonInfo(typeof(NewTalkMarker.Mod), "NewTalkMarker", "0.1.0", "gabriel")]
+[assembly: MelonInfo(typeof(NewTalkMarker.Mod), "NewTalkMarker", "1.0.0", "gabriel")]
 [assembly: MelonGame("Eek", "House Party")]
 
 namespace NewTalkMarker

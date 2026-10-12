@@ -192,6 +192,39 @@ Modelo:
     acompanhando.
   - Se os personagens de DLC têm voz em outros bundles.
 
+## Mais opções nos mods pelo ModSettings
+
+- **Status:** ideia
+- **O que faz:** expõe no MelonPreferences, e com isso no ModSettings,
+  valores que hoje estão fixos no código, para o jogador ajustar cada mod.
+- **Opções atuais** (2026-10-12):
+  - RelationshipHints: `DiagnosticLog`.
+  - NewTalkMarker: `MaxDistance`, `DiagnosticLog`.
+  - ItemHighlight: `LabelsKey`, `GlowKey`, `StartLabels`, `StartGlow`,
+    `GlowUse` e `Show*` por tipo de item.
+  - Jump: `Key`, `Height`, `Animation`, `CombatOnAlt`.
+  - Dubbing: `Language`.
+  - ModSettings: `OpenKey`.
+  - SkipIntro e AutoContinue: nenhuma, nem para desligar.
+- **Pistas** (valores fixos no código):
+  - RelationshipHints: cores positiva e negativa (`Effect.PositiveColor`,
+    `NegativeColor`); letras dos marcadores; esconder o romance ou os
+    efeitos em outros personagens.
+  - NewTalkMarker: cores amarela e verde, altura acima da cabeça
+    (`AboveHead`), ligar só o amarelo ou só o verde.
+  - ItemHighlight: cor e duração do pulso do brilho (`Pink`,
+    `PulseSeconds`), cores por tipo e tamanho da fonte dos nomes
+    (`FontSize`).
+  - Jump: gravidade (`Gravity`).
+  - SkipIntro e AutoContinue: opção para desligar sem remover a DLL.
+- **Dúvidas / o que investigar:**
+  - O ModSettings só tem caixa de marcar e campo de texto; cor e número
+    exigem validação no campo ou um controle novo (sem sliders no IMGUI do
+    jogo).
+  - Quais opções valem a pena para o jogador, sem encher a janela.
+  - Opções lidas só na inicialização precisam valer na hora, como as teclas
+    do ItemHighlight.
+
 ## Terceira pessoa
 
 - **Status:** ideia

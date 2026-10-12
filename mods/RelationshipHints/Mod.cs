@@ -11,7 +11,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Il2CppResponseList = Il2CppSystem.Collections.Generic.List<Il2CppEekEvents.IResponse>;
 
-[assembly: MelonInfo(typeof(RelationshipHints.Mod), "RelationshipHints", "0.3.4", "gabriel")]
+[assembly: MelonInfo(typeof(RelationshipHints.Mod), "RelationshipHints", "1.0.0", "gabriel")]
 [assembly: MelonGame("Eek", "House Party")]
 
 namespace RelationshipHints

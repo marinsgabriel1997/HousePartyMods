@@ -3,7 +3,7 @@ using HarmonyLib;
 using Il2Cpp;
 using MelonLoader;
 
-[assembly: MelonInfo(typeof(AutoContinue.Mod), "AutoContinue", "0.1.0", "gabriel")]
+[assembly: MelonInfo(typeof(AutoContinue.Mod), "AutoContinue", "1.0.0", "gabriel")]
 [assembly: MelonGame("Eek", "House Party")]
 
 namespace AutoContinue

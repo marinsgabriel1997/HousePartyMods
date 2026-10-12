@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using MelonLoader;
 using UnityEngine;
 
-[assembly: MelonInfo(typeof(ModSettings.Mod), "ModSettings", "0.1.0", "gabriel")]
+[assembly: MelonInfo(typeof(ModSettings.Mod), "ModSettings", "1.0.0", "gabriel")]
 [assembly: MelonGame("Eek", "House Party")]
 
 namespace ModSettings
