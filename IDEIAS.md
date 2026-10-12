@@ -153,3 +153,18 @@ Modelo:
 - **Dúvidas / o que investigar:**
   - Se um mod consegue trocar os áudios na hora de tocar, sem alterar os
     bundles, o que facilitaria a distribuição.
+
+## Terceira pessoa
+
+- **Status:** ideia
+- **O que faz:** uma tecla alterna a câmera entre a primeira pessoa do jogo
+  e uma câmera atrás do personagem do jogador.
+- **Pistas:** `CameraManager` (`Il2CppEekCharacterEngine`) e
+  `PlayerCharacter.SetPlayerHeadAndEyesVisible`, que deve esconder a cabeça
+  na primeira pessoa.
+- **Dúvidas / o que investigar:**
+  - Como o jogo posiciona a câmera e se ela pode ser afastada sem quebrar a
+    mira das interações, que partem do centro da tela.
+  - Se o modelo do jogador fica completo (cabeça, cabelo, roupas) visto de
+    fora.
+  - Colisão da câmera com paredes em ambientes fechados.
