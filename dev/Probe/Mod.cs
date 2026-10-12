@@ -28,6 +28,7 @@ namespace Probe
         public override void OnInitializeMelon()
         {
             Log = LoggerInstance;
+            Intro.Init();
             Log.Msg("Carregado. F7 grava o relatório em UserData/Probe/.");
         }
 
@@ -38,6 +39,12 @@ namespace Probe
                 try { Watcher.OnChosen(talkingTo, response?.TryCast<Response>()); }
                 catch (Exception ex) { Log.Error($"Erro ao registrar escolha: {ex}"); }
             }));
+        }
+
+        public override void OnSceneWasLoaded(int buildIndex, string sceneName)
+        {
+            try { Intro.OnSceneLoaded(buildIndex, sceneName); }
+            catch (Exception ex) { Log.Error($"Erro ao registrar cena: {ex}"); }
         }
 
         public override void OnUpdate()

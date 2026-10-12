@@ -67,3 +67,39 @@ Modelo:
     como item, fora do menu, e avança a quest `1477ed2c-...` (estado 1 =
     pedido feito). Hipótese: derivar o azul das quests em andamento ligadas ao
     personagem. Investigar como o jogo associa quest e personagem.
+
+## Pular com o personagem
+
+- **Status:** ideia
+- **O que faz:** uma tecla faz o personagem do jogador pular.
+- **Pistas:** o controle de movimento do jogador (`Il2CppEekCharacterEngine`).
+- **Dúvidas / o que investigar:**
+  - Se o controle do jogador aceita movimento vertical ou se prende o
+    personagem ao chão (NavMesh).
+  - Se há animação de pulo que possa ser reaproveitada.
+  - Qual tecla está livre (`Espaço` precisa ser conferido).
+
+## Pular aberturas ao abrir o jogo
+
+- **Status:** em desenvolvimento (`mods/SkipIntro`, plano
+  `planos/executados/p30-pular-aberturas.md`)
+- **O que faz:** pula o vídeo da Eek! Games e o aviso e abre direto no menu
+  principal. Detalhes no README do mod.
+- **Confirmado no jogo** (2026-10-11):
+  - As telas são as cenas `EekGamesIntro` e `Disclaimer`, controladas por
+    `EekGamesIntroManager` e `DisclaimerManager`, que herdam de
+    `TransitionalSceneManager`.
+  - `UserInputForTransitionReceived` só verifica se houve tecla; respondendo
+    `true`, o próprio jogo carrega a cena seguinte. O menu abre em ~1,5 s.
+  - Não apareceu splash do Unity antes das cenas.
+
+## Continuar sozinho após o primeiro carregamento
+
+- **Status:** ideia
+- **O que faz:** ao carregar um save, o jogo para ao fim da primeira tela de
+  carregamento e espera um clique antes da segunda. O mod daria esse clique
+  sozinho.
+- **Dúvidas / o que investigar:**
+  - Qual componente espera o clique e como o jogo recebe a confirmação.
+  - Se a pausa tem função (dicas na tela, carregamento ainda em andamento).
+  - Novo jogo também carrega no mesmo modelo de duas telas com click.
