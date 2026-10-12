@@ -20,9 +20,8 @@ details in the [main README](../../README.en.md#compatibility).
 ## Installation
 
 1. Install MelonLoader as described in the [main README](../../README.en.md#installation).
-2. Download `SkipIntro.dll` from the
-   [Releases](../../../../releases?q=SkipIntro&expanded=true) page and put it
-   in the `Mods` folder at the game root.
+2. Download [`SkipIntro.dll`](../../dist/1.0.0/SkipIntro.dll) (download button on the
+   file page) and put it in the `Mods` folder at the game root.
 3. Start the game.
 
 To uninstall, delete `Mods\SkipIntro.dll`.

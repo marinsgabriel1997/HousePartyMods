@@ -11,14 +11,14 @@ Cada mod é uma DLL independente: instale só os que quiser.
 
 | Mod | O que faz | Download |
 |---|---|---|
-| [RelationshipHints](mods/RelationshipHints/README.md) | Mostra no menu de respostas o efeito de cada opção na amizade e no romance (`+1A -1R \| Texto`) | [Releases](../../releases?q=RelationshipHints&expanded=true) |
-| [NewTalkMarker](mods/NewTalkMarker/README.md) | Mostra um "!" sobre o personagem quando surge uma fala nova para ele | [Releases](../../releases?q=NewTalkMarker&expanded=true) |
-| [ItemHighlight](mods/ItemHighlight/README.md) | Mostra o nome dos itens à vista e faz brilhar os que podem ser pegos, cada um com sua tecla | [Releases](../../releases?q=ItemHighlight&expanded=true) |
-| [SkipIntro](mods/SkipIntro/README.md) | Abre o jogo direto no menu principal, sem o vídeo da Eek! Games e o aviso | [Releases](../../releases?q=SkipIntro&expanded=true) |
-| [AutoContinue](mods/AutoContinue/README.md) | Segue sozinho da primeira tela de carregamento, sem esperar o clique | [Releases](../../releases?q=AutoContinue&expanded=true) |
-| [Jump](mods/Jump/README.md) | Faz o personagem pular com o `Espaço`; o modo de combate passa para o `Alt` | [Releases](../../releases?q=Jump&expanded=true) |
-| [Dubbing](mods/Dubbing/README.md) | Toca dublagens em outros idiomas, de arquivos `.ogg` numa pasta, no lugar das vozes originais | [Releases](../../releases?q=Dubbing&expanded=true) |
-| [ModSettings](mods/ModSettings/README.md) | Janela no jogo (`F6`) para ajustar as opções dos mods, gravadas na hora | [Releases](../../releases?q=ModSettings&expanded=true) |
+| [RelationshipHints](mods/RelationshipHints/README.md) | Mostra no menu de respostas o efeito de cada opção na amizade e no romance (`+1A -1R \| Texto`) | [`RelationshipHints.dll`](dist/1.0.0/RelationshipHints.dll) |
+| [NewTalkMarker](mods/NewTalkMarker/README.md) | Mostra um "!" sobre o personagem quando surge uma fala nova para ele | [`NewTalkMarker.dll`](dist/1.0.0/NewTalkMarker.dll) |
+| [ItemHighlight](mods/ItemHighlight/README.md) | Mostra o nome dos itens à vista e faz brilhar os que podem ser pegos, cada um com sua tecla | [`ItemHighlight.dll`](dist/1.0.0/ItemHighlight.dll) |
+| [SkipIntro](mods/SkipIntro/README.md) | Abre o jogo direto no menu principal, sem o vídeo da Eek! Games e o aviso | [`SkipIntro.dll`](dist/1.0.0/SkipIntro.dll) |
+| [AutoContinue](mods/AutoContinue/README.md) | Segue sozinho da primeira tela de carregamento, sem esperar o clique | [`AutoContinue.dll`](dist/1.0.0/AutoContinue.dll) |
+| [Jump](mods/Jump/README.md) | Faz o personagem pular com o `Espaço`; o modo de combate passa para o `Alt` | [`Jump.dll`](dist/1.0.0/Jump.dll) |
+| [Dubbing](mods/Dubbing/README.md) | Toca dublagens em outros idiomas, de arquivos `.ogg` numa pasta, no lugar das vozes originais | [`Dubbing.dll`](dist/1.0.0/Dubbing.dll) |
+| [ModSettings](mods/ModSettings/README.md) | Janela no jogo (`F6`) para ajustar as opções dos mods, gravadas na hora | [`ModSettings.dll`](dist/1.0.0/ModSettings.dll) |
 
 ## Compatibilidade
 
@@ -49,8 +49,9 @@ cada mod informa em qual versão ele foi testado por último.
      `force_offline_generation = false` por `true` e abra o jogo de novo. O
      mapa de desofuscação que o MelonLoader tenta baixar é de uma versão
      antiga do jogo e não é necessário.
-3. Baixe a DLL de cada mod que quiser (tabela acima) e coloque na pasta `Mods`
-   do jogo, a que fica na raiz da instalação, não a
+3. Baixe a DLL de cada mod que quiser (coluna Download da tabela acima; na
+   página do arquivo, use o botão de download) e coloque na pasta `Mods` do
+   jogo, a que fica na raiz da instalação, não a
    `HouseParty_Data\StreamingAssets\Mods`.
 
 As configurações dos mods ficam em `UserData\MelonPreferences.cfg`, criado

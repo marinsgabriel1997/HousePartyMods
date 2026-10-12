@@ -30,9 +30,8 @@ details in the [main README](../../README.en.md#compatibility).
 ## Installation
 
 1. Install MelonLoader as described in the [main README](../../README.en.md#installation).
-2. Download `Jump.dll` from the
-   [Releases](../../../../releases?q=Jump&expanded=true) page and put it in
-   the `Mods` folder at the game root.
+2. Download [`Jump.dll`](../../dist/1.0.0/Jump.dll) (download button on the
+   file page) and put it in the `Mods` folder at the game root.
 3. Start the game, start or load a game and press `Space`.
 
 To uninstall, delete `Mods\Jump.dll`. Combat goes back to `Space`.

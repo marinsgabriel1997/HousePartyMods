@@ -40,9 +40,8 @@ Last tested on House Party 1.5.2.14289 with MelonLoader 0.7.3. See the
 ## Installation
 
 1. Install MelonLoader as described in the [main README](../../README.en.md#installation).
-2. Download `RelationshipHints.dll` from
-   [Releases](../../../../releases?q=RelationshipHints&expanded=true) and put
-   it in the `Mods` folder at the game root.
+2. Download [`RelationshipHints.dll`](../../dist/1.0.0/RelationshipHints.dll) (download button on the
+   file page) and put it in the `Mods` folder at the game root.
 3. Start the game and talk to someone.
 
 To uninstall, delete `Mods\RelationshipHints.dll`.

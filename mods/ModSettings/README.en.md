@@ -32,9 +32,8 @@ details in the [main README](../../README.en.md#compatibility).
 ## Installation
 
 1. Install MelonLoader as described in the [main README](../../README.en.md#installation).
-2. Download `ModSettings.dll` from the
-   [Releases](../../../../releases?q=ModSettings&expanded=true) page and put
-   it in the `Mods` folder at the game root.
+2. Download [`ModSettings.dll`](../../dist/1.0.0/ModSettings.dll) (download button on the
+   file page) and put it in the `Mods` folder at the game root.
 3. Start the game and press `F6`.
 
 To uninstall, delete `Mods\ModSettings.dll`. The other mods keep working,

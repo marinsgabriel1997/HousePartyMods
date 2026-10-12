@@ -29,9 +29,8 @@ detalhes no [README principal](../../README.md#compatibilidade).
 ## Instalação
 
 1. Instale o MelonLoader, conforme o [README principal](../../README.md#instalação).
-2. Baixe o `Jump.dll` na página de
-   [Releases](../../../../releases?q=Jump&expanded=true) e coloque na pasta
-   `Mods` da raiz do jogo.
+2. Baixe o [`Jump.dll`](../../dist/1.0.0/Jump.dll) (na página do
+   arquivo, botão de download) e coloque na pasta `Mods` da raiz do jogo.
 3. Abra o jogo, comece ou carregue uma partida e aperte `Espaço`.
 
 Para desinstalar, apague o `Mods\Jump.dll`. O combate volta ao `Espaço`.

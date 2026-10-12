@@ -24,3 +24,6 @@ Thumbs.db
 
 
 dublagem-teste*
+
+# DLLs dos mods publicadas no repositório, por versão
+!dist/**/*.dll

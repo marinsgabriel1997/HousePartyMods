@@ -22,9 +22,8 @@ details in the [main README](../../README.en.md#compatibility).
 ## Installation
 
 1. Install MelonLoader as described in the [main README](../../README.en.md#installation).
-2. Download `AutoContinue.dll` from the
-   [Releases](../../../../releases?q=AutoContinue&expanded=true) page and
-   put it in the `Mods` folder at the game root.
+2. Download [`AutoContinue.dll`](../../dist/1.0.0/AutoContinue.dll) (download button on the
+   file page) and put it in the `Mods` folder at the game root.
 3. Start the game and load a save.
 
 To uninstall, delete `Mods\AutoContinue.dll`.

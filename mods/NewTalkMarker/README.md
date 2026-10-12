@@ -42,9 +42,8 @@ detalhes no [README principal](../../README.md#compatibilidade).
 ## Instalação
 
 1. Instale o MelonLoader, conforme o [README principal](../../README.md#instalação).
-2. Baixe o `NewTalkMarker.dll` na página de
-   [Releases](../../../../releases?q=NewTalkMarker&expanded=true) e coloque
-   na pasta `Mods` da raiz do jogo.
+2. Baixe o [`NewTalkMarker.dll`](../../dist/1.0.0/NewTalkMarker.dll) (na página do
+   arquivo, botão de download) e coloque na pasta `Mods` da raiz do jogo.
 3. Abra o jogo e comece ou carregue uma partida.
 
 Para desinstalar, apague o `Mods\NewTalkMarker.dll`. Os arquivos

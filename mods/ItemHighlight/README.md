@@ -41,9 +41,8 @@ detalhes no [README principal](../../README.md#compatibilidade).
 ## Instalação
 
 1. Instale o MelonLoader, conforme o [README principal](../../README.md#instalação).
-2. Baixe o `ItemHighlight.dll` na página de
-   [Releases](../../../../releases?q=ItemHighlight&expanded=true) e coloque
-   na pasta `Mods` da raiz do jogo.
+2. Baixe o [`ItemHighlight.dll`](../../dist/1.0.0/ItemHighlight.dll) (na página do
+   arquivo, botão de download) e coloque na pasta `Mods` da raiz do jogo.
 3. Abra o jogo, comece ou carregue uma partida e aperte `H` ou `J`.
 
 Para desinstalar, apague o `Mods\ItemHighlight.dll`.

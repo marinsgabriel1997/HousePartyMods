@@ -11,14 +11,14 @@ Each mod is a standalone DLL: install only the ones you want.
 
 | Mod | What it does | Download |
 |---|---|---|
-| [RelationshipHints](mods/RelationshipHints/README.en.md) | Shows each reply's effect on friendship and romance in the reply menu (`+1F -1R \| Text`) | [Releases](../../releases?q=RelationshipHints&expanded=true) |
-| [NewTalkMarker](mods/NewTalkMarker/README.en.md) | Shows a "!" above a character when a new line becomes available for them | [Releases](../../releases?q=NewTalkMarker&expanded=true) |
-| [ItemHighlight](mods/ItemHighlight/README.en.md) | Shows the names of items in view and makes the ones you can pick up glow, each with its own key | [Releases](../../releases?q=ItemHighlight&expanded=true) |
-| [SkipIntro](mods/SkipIntro/README.en.md) | Opens the game straight to the main menu, without the Eek! Games video and the disclaimer | [Releases](../../releases?q=SkipIntro&expanded=true) |
-| [AutoContinue](mods/AutoContinue/README.en.md) | Moves on from the first loading screen by itself, without waiting for a click | [Releases](../../releases?q=AutoContinue&expanded=true) |
-| [Jump](mods/Jump/README.en.md) | Makes the character jump with `Space`; combat mode moves to `Alt` | [Releases](../../releases?q=Jump&expanded=true) |
-| [Dubbing](mods/Dubbing/README.en.md) | Plays dubbings in other languages, from `.ogg` files in a folder, instead of the original voices | [Releases](../../releases?q=Dubbing&expanded=true) |
-| [ModSettings](mods/ModSettings/README.en.md) | In-game window (`F6`) to adjust mod settings, saved right away | [Releases](../../releases?q=ModSettings&expanded=true) |
+| [RelationshipHints](mods/RelationshipHints/README.en.md) | Shows each reply's effect on friendship and romance in the reply menu (`+1F -1R \| Text`) | [`RelationshipHints.dll`](dist/1.0.0/RelationshipHints.dll) |
+| [NewTalkMarker](mods/NewTalkMarker/README.en.md) | Shows a "!" above a character when a new line becomes available for them | [`NewTalkMarker.dll`](dist/1.0.0/NewTalkMarker.dll) |
+| [ItemHighlight](mods/ItemHighlight/README.en.md) | Shows the names of items in view and makes the ones you can pick up glow, each with its own key | [`ItemHighlight.dll`](dist/1.0.0/ItemHighlight.dll) |
+| [SkipIntro](mods/SkipIntro/README.en.md) | Opens the game straight to the main menu, without the Eek! Games video and the disclaimer | [`SkipIntro.dll`](dist/1.0.0/SkipIntro.dll) |
+| [AutoContinue](mods/AutoContinue/README.en.md) | Moves on from the first loading screen by itself, without waiting for a click | [`AutoContinue.dll`](dist/1.0.0/AutoContinue.dll) |
+| [Jump](mods/Jump/README.en.md) | Makes the character jump with `Space`; combat mode moves to `Alt` | [`Jump.dll`](dist/1.0.0/Jump.dll) |
+| [Dubbing](mods/Dubbing/README.en.md) | Plays dubbings in other languages, from `.ogg` files in a folder, instead of the original voices | [`Dubbing.dll`](dist/1.0.0/Dubbing.dll) |
+| [ModSettings](mods/ModSettings/README.en.md) | In-game window (`F6`) to adjust mod settings, saved right away | [`ModSettings.dll`](dist/1.0.0/ModSettings.dll) |
 
 ## Compatibility
 
@@ -49,8 +49,9 @@ the version it was last tested on.
      `force_offline_generation = false` to `true` and start the game again.
      The deobfuscation map MelonLoader tries to download is for an older game
      version and isn't needed.
-3. Download the DLL of each mod you want (table above) and put it in the
-   game's `Mods` folder, the one at the root of the install, not
+3. Download the DLL of each mod you want (Download column in the table above;
+   on the file page, use the download button) and put it in the game's `Mods`
+   folder, the one at the root of the install, not
    `HouseParty_Data\StreamingAssets\Mods`.
 
 Mod settings live in `UserData\MelonPreferences.cfg`, created after the first

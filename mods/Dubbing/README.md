@@ -27,9 +27,8 @@ detalhes no [README principal](../../README.md#compatibilidade).
 ## Instalação
 
 1. Instale o MelonLoader, conforme o [README principal](../../README.md#instalação).
-2. Baixe o `Dubbing.dll` na página de
-   [Releases](../../../../releases?q=Dubbing&expanded=true) e coloque na
-   pasta `Mods` da raiz do jogo.
+2. Baixe o [`Dubbing.dll`](../../dist/1.0.0/Dubbing.dll) (na página do
+   arquivo, botão de download) e coloque na pasta `Mods` da raiz do jogo.
 3. Coloque a dublagem em `UserData\Dubbing\<idioma>` (veja abaixo).
 4. Abra o jogo e escolha a dublagem na opção "Dublagem" do ModSettings
    (`F6`), ou em `Language` no arquivo de configuração (veja abaixo).

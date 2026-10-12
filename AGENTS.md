@@ -89,7 +89,7 @@
 
 ## Restrições
 
-- Não versionar binários do jogo, assemblies gerados, código decompilado ou saídas de build; respeitar `.gitignore`.
+- Não versionar binários do jogo, assemblies gerados, código decompilado ou saídas de build; respeitar `.gitignore`. A exceção são as DLLs dos mods publicadas em `dist/<versão>/`, de onde os READMEs apontam o download.
 - `dev/Probe` é ferramenta de desenvolvimento e não deve ser publicada como mod de usuário.
 - Preservar alterações locais existentes. Não descartar, sobrescrever ou incluir em entregas trabalho alheio ao escopo aprovado.
 - No RelationshipHints, preservar o contrato de alterar somente a exibição dos marcadores, sem modificar arquivos do jogo, `.character` ou arquivos de idioma.
