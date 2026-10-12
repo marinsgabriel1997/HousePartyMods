@@ -17,36 +17,25 @@ Modelo:
 
 ## Destaque de coletáveis no cenário
 
-- **Status:** viável. Formato escolhido: segurar uma tecla mostra o nome dos
-  itens próximos (como Baldur's Gate 3 e Divinity), com cor por tipo de ação
-- **O que faz:** destaca itens que o jogador pode pegar ou usar no cenário,
-  como a maioria dos jogos faz (contorno, brilho ou ícone), para não ter que
-  passar o mouse em tudo.
-- **Pistas** (código descompilado, 2026-10-11):
-  - ~~`ClickManager.Highlight()`~~: é de UI (botões, ponteiro), não de objetos
-    do cenário. O jogo (HDRP) não tem sistema de contorno ou brilho próprio,
-    então o visual terá de ser do mod. Caminho mais simples: ícone na tela
-    sobre cada item (posição do mundo convertida para a tela), sem mexer em
-    shaders.
-  - `ItemManager.GetAllItems()`: lista de todos os `InteractiveItem`.
-  - `InteractiveItem`: `HasInteractions(story)`, `Interactions`,
-    `canBeGrabbed`, `_inventoried`, `IsRendererEnabled`, `DisplayName`,
-    `InPlayerInteractionRange()`, `DistanceToInteraction`.
-  - Evento estático `InteractiveItem.OnMouseOver(item)`: o hover do jogo.
-  - História ativa: `GameManager.GetActiveStory()`.
-- **Confirmado no jogo** (sonda, 2026-10-11):
-  - 292 itens, 286 ativos. Os personagens também são `InteractiveItem`
-    (ações `[Inspect, Talk]`).
-  - `canBeGrabbed` não serve: vale `True` para sofá, fogão e personagens.
-  - Coletável = item cuja lista `Interactions` contém `Take` (43 itens, por
-    exemplo, Battery Pack). As outras ações (`Open`, `Close`, `Sit`,
-    `Inspect`...) permitem cores por tipo.
+- **Status:** em desenvolvimento (`mods/ItemHighlight`, plano
+  `planos/executados/p20-destaque-de-itens.md`)
+- **O que faz:** `H` mostra o nome dos itens à vista, com cor por tipo de
+  ação; `J` faz os coletáveis pulsarem em rosa, com níveis de força.
+  Detalhes no README do mod.
+- **Confirmado no jogo** (2026-10-11):
+  - O jogo só preenche `InteractiveItem.Interactions` ao calcular as ações
+    do item (no hover); o mod chama `HasInteractions(story)` antes de ler.
+  - Sem linha de visão, a casa inteira aparecia através das paredes.
+  - `Use With...` está em quase todo objeto fixo e não serve para
+    classificar.
+  - O brilho por emissão do HDRP funciona, mas a força percebida varia com o
+    material (a cerveja e o papel precisam de ~2,5; itens escuros, de 0,3).
+  - Halo 2D na tela foi testado e descartado. `GUI.DrawTexture`/`GUI.color`
+    foram removidos do jogo ("Method unstripping failed").
 - **Dúvidas / o que investigar:**
-  - Destacar só os coletáveis ou também os interativos, com cores diferentes?
-  - Destacar sempre, só ao segurar uma tecla, ou só num raio perto do jogador?
-  - Itens escondidos de propósito (parte de quebra-cabeça) estragariam a
-    graça? Talvez uma opção para não destacar itens de quest.
-  - Custo: muitos objetos destacados ao mesmo tempo pesam no desempenho?
+  - Contorno de verdade (como o The Witcher 3) exigiria shader próprio
+    compilado no Unity 2022.3 com HDRP.
+  - Raio curto que mostra itens atrás de paredes, ativável por tecla.
 
 ## Indicador de personagem com fala nova
 

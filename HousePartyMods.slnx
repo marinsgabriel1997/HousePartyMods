@@ -1,5 +1,6 @@
 <Solution>
   <Folder Name="/mods/">
+    <Project Path="mods/ItemHighlight/ItemHighlight.csproj" />
     <Project Path="mods/NewTalkMarker/NewTalkMarker.csproj" />
     <Project Path="mods/RelationshipHints/RelationshipHints.csproj" />
   </Folder>

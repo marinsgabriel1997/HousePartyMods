@@ -17,7 +17,7 @@ using UnityEngine;
 
 namespace Probe
 {
-    // Sonda de desenvolvimento (não é publicada). F8 grava em UserData/Probe/
+    // Sonda de desenvolvimento (não é publicada). F7 grava em UserData/Probe/
     // o que o jogo sabe sobre itens do cenário e falas liberadas, para avaliar
     // as ideias do IDEIAS.md com dados reais.
     public class Mod : MelonMod
@@ -28,7 +28,7 @@ namespace Probe
         public override void OnInitializeMelon()
         {
             Log = LoggerInstance;
-            Log.Msg("Carregado. F8 grava o relatório em UserData/Probe/.");
+            Log.Msg("Carregado. F7 grava o relatório em UserData/Probe/.");
         }
 
         public override void OnLateInitializeMelon()
@@ -45,20 +45,20 @@ namespace Probe
             try { Watcher.Tick(); }
             catch (Exception ex) { Log.Error($"Erro na vigia: {ex}"); }
 
-            if (!F8Pressed())
+            if (!F7Pressed())
                 return;
             try { Dump(); }
             catch (Exception ex) { Log.Error($"Erro no relatório: {ex}"); }
         }
 
-        // F9 é o salvamento rápido do jogo; por isso F8.
+        // F8 abre o mapeamento de controles do jogo e F9 é o salvamento rápido; por isso F7.
         // O jogo pode ter só o Input System novo ativo; nesse caso o Input
         // antigo lança exceção e passamos a usar o novo.
-        private static bool F8Pressed()
+        private static bool F7Pressed()
         {
             if (!_legacyInputBroken)
             {
-                try { return Input.GetKeyDown(KeyCode.F8); }
+                try { return Input.GetKeyDown(KeyCode.F7); }
                 catch (Exception ex)
                 {
                     _legacyInputBroken = true;
@@ -66,7 +66,7 @@ namespace Probe
                 }
             }
             var keyboard = UnityEngine.InputSystem.Keyboard.current;
-            return keyboard != null && keyboard.f8Key.wasPressedThisFrame;
+            return keyboard != null && keyboard.f7Key.wasPressedThisFrame;
         }
 
         private static void Dump()
@@ -99,7 +99,34 @@ namespace Probe
             bool hasInteractions = story != null && item.HasInteractions(story);
             return $"{go.name} | \"{item.DisplayName}\" | ativo={go.activeInHierarchy} render={item.IsRendererEnabled} " +
                    $"pegável={item.canBeGrabbed} inventário={item._inventoried} interações={hasInteractions} " +
-                   $"[{interactions}] dist={distance} perto={item.InPlayerInteractionRange()}";
+                   $"[{interactions}] dist={distance} perto={item.InPlayerInteractionRange()}" +
+                   $"\n    renderers: {DescribeRenderers(item)}";
+        }
+
+        // Para o brilho do ItemHighlight (emissão HDRP): renderers do item,
+        // inclusive inativos, com o shader de cada material e se ele tem
+        // _EmissiveColor. "pai" indica renderer num ancestral, fora dos filhos.
+        private static string DescribeRenderers(InteractiveItem item)
+        {
+            var parts = new List<string>();
+            foreach (Renderer renderer in item.GetComponentsInChildren<Renderer>(true))
+            {
+                var materials = new List<string>();
+                foreach (Material material in renderer.sharedMaterials)
+                {
+                    if (material == null)
+                        materials.Add("(nulo)");
+                    else
+                        materials.Add($"{material.shader?.name}{(material.HasProperty("_EmissiveColor") ? "" : " SEM-EMISSÃO")}");
+                }
+                parts.Add($"{renderer.GetIl2CppType().Name}:{renderer.gameObject.name}" +
+                          $"{(renderer.enabled && renderer.gameObject.activeInHierarchy ? "" : " (inativo)")}" +
+                          $" [{string.Join("; ", materials)}]");
+            }
+            Renderer parent = item.transform.parent != null ? item.transform.parent.GetComponentInParent<Renderer>() : null;
+            if (parent != null)
+                parts.Add($"pai {parent.GetIl2CppType().Name}:{parent.gameObject.name}");
+            return parts.Count == 0 ? "nenhum" : string.Join(" | ", parts);
         }
 
         private static void DumpItems(StringBuilder report)
