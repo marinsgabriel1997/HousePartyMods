@@ -105,4 +105,5 @@ Consultar somente os documentos necessários à tarefa. Os gatilhos abaixo são 
 | `mods/RelationshipHints/README.md` e `README.en.md` no mesmo diretório | Antes de alterar cálculo, marcadores ou diagnóstico do RelationshipHints, ler ambos. |
 | `IDEIAS.md` | Antes de investigar protótipos ou alterar premissas das ideias registradas, ler as entradas pertinentes. |
 | `docs/teclas-do-jogo.md` | Antes de escolher ou mudar a tecla de um mod, ler para evitar conflito com o jogo. |
+| `docs/investigacao-do-jogo.md` | Antes de procurar classes, métodos ou comportamento do jogo, ler para usar o código descompilado em `_decomp` e a sonda. |
 | `.gitignore` | Antes de adicionar arquivos, dependências locais ou artefatos, conferir as exclusões. |
