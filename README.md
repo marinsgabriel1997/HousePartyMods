@@ -16,6 +16,7 @@ Cada mod é uma DLL independente: instale só os que quiser.
 | [ItemHighlight](mods/ItemHighlight/README.md) | Mostra o nome dos itens à vista e faz brilhar os que podem ser pegos, cada um com sua tecla | [Releases](../../releases?q=ItemHighlight&expanded=true) |
 | [SkipIntro](mods/SkipIntro/README.md) | Abre o jogo direto no menu principal, sem o vídeo da Eek! Games e o aviso | [Releases](../../releases?q=SkipIntro&expanded=true) |
 | [AutoContinue](mods/AutoContinue/README.md) | Segue sozinho da primeira tela de carregamento, sem esperar o clique | [Releases](../../releases?q=AutoContinue&expanded=true) |
+| [Jump](mods/Jump/README.md) | Faz o personagem pular com o `Espaço`; o modo de combate passa para o `Alt` | [Releases](../../releases?q=Jump&expanded=true) |
 | [ModSettings](mods/ModSettings/README.md) | Janela no jogo (`F6`) para ajustar as opções dos mods, gravadas na hora | [Releases](../../releases?q=ModSettings&expanded=true) |
 
 ## Compatibilidade

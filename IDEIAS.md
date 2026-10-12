@@ -70,14 +70,23 @@ Modelo:
 
 ## Pular com o personagem
 
-- **Status:** ideia
-- **O que faz:** uma tecla faz o personagem do jogador pular.
-- **Pistas:** o controle de movimento do jogador (`Il2CppEekCharacterEngine`).
+- **Status:** concluída (`mods/Jump`, plano
+  `planos/executados/p60-pular-com-o-personagem.md`)
+- **O que faz:** `Espaço` faz o personagem pular; o modo de combate passa
+  para o `Alt`. Detalhes no README do mod.
+- **Confirmado no jogo** (2026-10-12):
+  - O jogo não tem pulo: no chão, prende o personagem ao piso; no ar
+    (`IsFalling`), desce em velocidade constante. `AddForce` soma à posição
+    a cada quadro, sem depender do tempo. O pulo leva a altura a uma
+    parábola logo depois de `PlayerCharacter.TryMoveController`.
+  - `CEvents.JumpUp` toca uma animação de pulo, sem mover o corpo; correndo,
+    dá um tranco na câmera.
+  - O `F8` grava os overrides ativos ao fechar; o mod retira a própria troca
+    do que é gravado.
 - **Dúvidas / o que investigar:**
-  - Se o controle do jogador aceita movimento vertical ou se prende o
-    personagem ao chão (NavMesh).
-  - Se há animação de pulo que possa ser reaproveitada.
-  - Qual tecla está livre (`Espaço` precisa ser conferido).
+  - Um indicador do modo de combate: `CCombat.InCombat` ficou `false` e
+    `CombatActive` `true` fora dele. Pistas: `PlayerCombatMode` e
+    `PlayerCharacter.OnCombatModeToggled`.
 
 ## Pular aberturas ao abrir o jogo
 

@@ -16,6 +16,7 @@ Each mod is a standalone DLL: install only the ones you want.
 | [ItemHighlight](mods/ItemHighlight/README.en.md) | Shows the names of items in view and makes the ones you can pick up glow, each with its own key | [Releases](../../releases?q=ItemHighlight&expanded=true) |
 | [SkipIntro](mods/SkipIntro/README.en.md) | Opens the game straight to the main menu, without the Eek! Games video and the disclaimer | [Releases](../../releases?q=SkipIntro&expanded=true) |
 | [AutoContinue](mods/AutoContinue/README.en.md) | Moves on from the first loading screen by itself, without waiting for a click | [Releases](../../releases?q=AutoContinue&expanded=true) |
+| [Jump](mods/Jump/README.en.md) | Makes the character jump with `Space`; combat mode moves to `Alt` | [Releases](../../releases?q=Jump&expanded=true) |
 | [ModSettings](mods/ModSettings/README.en.md) | In-game window (`F6`) to adjust mod settings, saved right away | [Releases](../../releases?q=ModSettings&expanded=true) |
 
 ## Compatibility

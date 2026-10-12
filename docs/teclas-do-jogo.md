@@ -37,7 +37,7 @@ tecla está ligada à ação; o efeito vem do nome da ação.
 | Roda do mouse | `UI/ScrollWheel` | rolar |
 | `Shift` esquerdo | `Player/Run` | correr |
 | `Ctrl` esquerdo | leitura direta | — |
-| `Espaço` | `Player/CombatMode` | modo de combate |
+| `Espaço` | `Player/CombatMode` | modo de combate (com o Jump, vai para o `Alt`) |
 | `C` | `Player/Crouch` | agachar |
 | `E` | `UI/PlayerActions` | ações do jogador |
 | `Q` | `UI/UIRadial` | menu radial |
@@ -73,6 +73,7 @@ mods atuais não usam o controle.
 | --- | --- | --- |
 | `H` | ItemHighlight | mostra e esconde os nomes dos itens |
 | `J` | ItemHighlight | passa pelos níveis do brilho |
+| `Espaço` | Jump | pula; o modo de combate do jogo passa para o `Alt` |
 | `F6` | ModSettings | abre e fecha a janela de configurações |
 | `F7` / `Shift`+`F7` | Probe (desenvolvimento) | relatório; janela de teste |
 
@@ -86,3 +87,8 @@ as letras `G`, `K`, `L`, `N`, `U` (sozinha), `V`, `X`, `Z` e os números `3` a
 - `Shift`+`Tab` abre o overlay do Steam.
 - Ao escolher uma tecla, considerar que o jogador pode ter remapeado as do
   jogo.
+- O mapeamento de controles (`F8`) grava os remapeamentos ao fechar o jogo,
+  inclusive overrides aplicados por mods (`SaveBindingOverridesAsJson`), e
+  recusa teclas já usadas por `RebindActionUI.IsDuplicate`. "Restaurar
+  padrão" pode gravar um override para a própria tecla padrão. Detalhes no
+  plano `p60`.

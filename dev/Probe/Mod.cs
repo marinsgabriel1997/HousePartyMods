@@ -32,6 +32,7 @@ namespace Probe
             Intro.Init();
             Loading.Init(HarmonyInstance);
             Keys.Init(HarmonyInstance);
+            Jump.Init();
             Language.Log("OnInitializeMelon");
             Log.Msg("Carregado. F7 grava o relatório em UserData/Probe/; Shift+F7 abre a janela de teste.");
         }
@@ -60,6 +61,8 @@ namespace Probe
 
             try { Language.Tick(); }
             catch (Exception ex) { Log.Error($"Erro no idioma: {ex}"); }
+            try { Jump.Tick(); }
+            catch (Exception ex) { Log.Error($"Erro no teste de pulo: {ex}"); }
             try { TestWindow.Tick("Update"); }
             catch (Exception ex) { Log.Error($"Erro na janela de teste: {ex}"); }
 
