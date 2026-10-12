@@ -17,6 +17,7 @@ Each mod is a standalone DLL: install only the ones you want.
 | [SkipIntro](mods/SkipIntro/README.en.md) | Opens the game straight to the main menu, without the Eek! Games video and the disclaimer | [Releases](../../releases?q=SkipIntro&expanded=true) |
 | [AutoContinue](mods/AutoContinue/README.en.md) | Moves on from the first loading screen by itself, without waiting for a click | [Releases](../../releases?q=AutoContinue&expanded=true) |
 | [Jump](mods/Jump/README.en.md) | Makes the character jump with `Space`; combat mode moves to `Alt` | [Releases](../../releases?q=Jump&expanded=true) |
+| [Dubbing](mods/Dubbing/README.en.md) | Plays dubbings in other languages, from `.ogg` files in a folder, instead of the original voices | [Releases](../../releases?q=Dubbing&expanded=true) |
 | [ModSettings](mods/ModSettings/README.en.md) | In-game window (`F6`) to adjust mod settings, saved right away | [Releases](../../releases?q=ModSettings&expanded=true) |
 
 ## Compatibility

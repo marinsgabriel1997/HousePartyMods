@@ -143,16 +143,54 @@ Modelo:
 
 ## Dublagens localizadas por mod
 
-- **Status:** ideia
-- **O que faz:** troca as vozes em inglês por dublagens em outros idiomas,
-  gravadas ou geradas por IA, sem mexer no áudio original do jogo. Um mesmo
-  mod traz várias dublagens, e o jogador escolhe o idioma.
-- **Pistas:** o projeto `house-party-dubbing`
-  (`C:\Users\gabriel\Documents\projetos\house-party-dubbing`) já faz a troca
-  injetando os áudios nos bundles dos personagens.
+- **Status:** concluída (`mods/Dubbing`, plano
+  `planos/executados/p70-dublagens-localizadas.md`)
+- **O que faz:** toca dublagens em `.ogg` de
+  `UserData/Dubbing/<idioma>/<história>/<personagem>/<clip>.ogg` no lugar das
+  vozes originais, sem alterar os bundles; o jogador escolhe o idioma.
+  Detalhes no README do mod.
+- **Confirmado no jogo** (2026-10-12):
+  - As vozes são `AudioClip` do Unity nos bundles. A corrotina
+    `CAudio.TryPlayDialogueAudio` termina com o clip original já tocando no
+    `CAudio._audio`; trocar o clip ali, no mesmo quadro, não deixa ouvir o
+    original. A conversa de fundo recebe o clip em
+    `CAudio.PlayVoicedBackgroundChatter`.
+  - A sincronia labial (SALSA) lê o mesmo `AudioSource` e acompanha o clip
+    novo sem ajuste.
+  - Carregar um `.ogg` por `DownloadHandlerAudioClip` leva poucos ms;
+    carregar todos os de um personagem de antemão ocupa centenas de MB.
+  - Com a dublagem `pt-br` do `house-party-dubbing` exportada para a pasta e
+    os bundles originais, ligar e desligar o mod alterna a voz.
 - **Dúvidas / o que investigar:**
-  - Se um mod consegue trocar os áudios na hora de tocar, sem alterar os
-    bundles, o que facilitaria a distribuição.
+  - Outras histórias e a `Phone Call`: o nome da pasta do personagem só foi
+    conferido na Original Story.
+  - Um canal de entrega "pasta do mod" no `house-party-dubbing`, no lugar
+    da injeção nos bundles.
+
+## Voz para falas sem áudio original
+
+- **Status:** ideia (pendente de investigação)
+- **O que faz:** com o Dubbing, dá voz também às falas que não têm clip
+  original no jogo, a partir de um `.ogg` na mesma pasta da dublagem.
+- **Pistas:**
+  - O jogo tem um caminho para falta de áudio: os textos indicam "File
+    doesn't exist. Loading original story.. Sending for TTS", e
+    `CAudio.SendDialogueTextForTextToSpeech` dispara `CAudio.OnTTSRequest`,
+    que a integração ElevenLabs (`Il2CppEekAI`, inativa no jogo publicado)
+    atende devolvendo o clip por `CAudio.AddDialogueOverrideClip`
+    (`TTSResult` com `Name`, `RequestId`, `SessionId` e `Clip`).
+  - O jogo monta o nome do clip mesmo sem o arquivo
+    (`_dialoguePrefix` + ID), o que serviria para achar o `.ogg`.
+  - O banco do `house-party-dubbing` tem 39 falas dubladas sem clip (10 da
+    `Phone Call` em Date Night With Brittney, 8 da Madison, 7 da Vickie no
+    DLC dela) e cerca de 900 falas de diálogo sem clip, a maioria de
+    personagens de DLC (Liz Katz, Gisella, Amala, Doja Cat), cuja voz pode
+    estar em bundles que o projeto não lê.
+- **Dúvidas / o que investigar:**
+  - Se o jogo chama `SendDialogueTextForTextToSpeech` quando falta o clip,
+    e se responder pela fila toca o áudio com a boca e a conversa
+    acompanhando.
+  - Se os personagens de DLC têm voz em outros bundles.
 
 ## Terceira pessoa
 

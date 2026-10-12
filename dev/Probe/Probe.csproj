@@ -16,6 +16,10 @@
     <Reference Include="$(Il2CppAssembliesDir)\UnityEngine.InputLegacyModule.dll" Private="false" />
     <Reference Include="$(Il2CppAssembliesDir)\Unity.InputSystem.dll" Private="false" />
     <Reference Include="$(Il2CppAssembliesDir)\UnityEngine.PhysicsModule.dll" Private="false" />
+    <Reference Include="$(Il2CppAssembliesDir)\UnityEngine.AudioModule.dll" Private="false" />
+    <Reference Include="$(Il2CppAssembliesDir)\Il2CppSALSA.dll" Private="false" />
+    <Reference Include="$(Il2CppAssembliesDir)\UnityEngine.UnityWebRequestModule.dll" Private="false" />
+    <Reference Include="$(Il2CppAssembliesDir)\UnityEngine.UnityWebRequestAudioModule.dll" Private="false" />
   </ItemGroup>
 
 </Project>

@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!-- TargetFramework, GameDir e referências comuns vêm do Directory.Build.props da raiz. -->
+  <PropertyGroup>
+    <AssemblyName>Dubbing</AssemblyName>
+    <RootNamespace>Dubbing</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Reference Include="$(Il2CppAssembliesDir)\Il2CppEekEvents.dll" Private="false" />
+    <Reference Include="$(Il2CppAssembliesDir)\Il2CppEekCharacterEngine.dll" Private="false" />
+    <Reference Include="$(Il2CppAssembliesDir)\UnityEngine.AudioModule.dll" Private="false" />
+    <Reference Include="$(Il2CppAssembliesDir)\UnityEngine.UnityWebRequestModule.dll" Private="false" />
+    <Reference Include="$(Il2CppAssembliesDir)\UnityEngine.UnityWebRequestAudioModule.dll" Private="false" />
+  </ItemGroup>
+
+</Project>

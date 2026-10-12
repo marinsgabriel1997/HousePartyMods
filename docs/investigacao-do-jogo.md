@@ -15,7 +15,8 @@ Ficam fora do git (`.gitignore`) e não devem ser publicadas.
 - `_decomp/<Assembly>/`: assemblies gerados descompilados, um projeto por
   assembly (`Il2CppEekCharacterEngine`, `Il2CppEekEvents`, `Il2CppEekUI`,
   `Il2CppHouseParty` e `Assembly-CSharp`), gerados em 2026-10-10 com o jogo
-  1.5.2.14289. Depois de atualizar o jogo e rodar o MelonLoader, gerar de
+  1.5.2.14289, mais `Il2CppEekAI` (integrações com OpenAI e ElevenLabs) e
+  `Il2CppSALSA` (sincronia labial), gerados em 2026-10-12. Depois de atualizar o jogo e rodar o MelonLoader, gerar de
   novo:
   `_tools/ilspycmd.exe -p -o _decomp/<Assembly> "<pasta do jogo>\MelonLoader\Il2CppAssemblies\<Assembly>.dll"`.
 

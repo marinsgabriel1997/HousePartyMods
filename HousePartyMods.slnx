@@ -1,6 +1,7 @@
 <Solution>
   <Folder Name="/mods/">
     <Project Path="mods/AutoContinue/AutoContinue.csproj" />
+    <Project Path="mods/Dubbing/Dubbing.csproj" />
     <Project Path="mods/ItemHighlight/ItemHighlight.csproj" />
     <Project Path="mods/Jump/Jump.csproj" />
     <Project Path="mods/ModSettings/ModSettings.csproj" />
