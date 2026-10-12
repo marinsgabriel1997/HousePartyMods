@@ -30,6 +30,7 @@ namespace Probe
         {
             Log = LoggerInstance;
             Intro.Init();
+            Loading.Init(HarmonyInstance);
             Keys.Init(HarmonyInstance);
             Language.Log("OnInitializeMelon");
             Log.Msg("Carregado. F7 grava o relatório em UserData/Probe/; Shift+F7 abre a janela de teste.");

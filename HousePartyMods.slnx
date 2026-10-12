@@ -1,5 +1,6 @@
 <Solution>
   <Folder Name="/mods/">
+    <Project Path="mods/AutoContinue/AutoContinue.csproj" />
     <Project Path="mods/ItemHighlight/ItemHighlight.csproj" />
     <Project Path="mods/ModSettings/ModSettings.csproj" />
     <Project Path="mods/NewTalkMarker/NewTalkMarker.csproj" />

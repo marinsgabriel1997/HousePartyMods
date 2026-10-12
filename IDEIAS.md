@@ -1,7 +1,7 @@
 # Ideias de mods
 
 Lista de ideias para avaliar. Status: `ideia` → `avaliando` → `viável` →
-`em desenvolvimento` → `publicado`, ou `descartada` (com o motivo).
+`em desenvolvimento` → `concluída`, ou `descartada` (com o motivo).
 
 Modelo:
 
@@ -17,7 +17,7 @@ Modelo:
 
 ## Destaque de coletáveis no cenário
 
-- **Status:** em desenvolvimento (`mods/ItemHighlight`, plano
+- **Status:** concluída (`mods/ItemHighlight`, plano
   `planos/executados/p20-destaque-de-itens.md`)
 - **O que faz:** `H` mostra o nome dos itens à vista, com cor por tipo de
   ação; `J` faz os coletáveis pulsarem em rosa, com níveis de força.
@@ -39,7 +39,7 @@ Modelo:
 
 ## Indicador de personagem com fala nova
 
-- **Status:** em desenvolvimento (`mods/NewTalkMarker`, plano
+- **Status:** concluída (`mods/NewTalkMarker`, plano
   `planos/executados/p10-marcadores-de-fala-nova.md`)
 - **O que faz:** "!" sobre o personagem quando surge uma fala nova para ele:
   amarelo (não vista no menu) e verde (vista, mas não escolhida), com as
@@ -81,7 +81,7 @@ Modelo:
 
 ## Pular aberturas ao abrir o jogo
 
-- **Status:** em desenvolvimento (`mods/SkipIntro`, plano
+- **Status:** concluída (`mods/SkipIntro`, plano
   `planos/executados/p30-pular-aberturas.md`)
 - **O que faz:** pula o vídeo da Eek! Games e o aviso e abre direto no menu
   principal. Detalhes no README do mod.
@@ -95,18 +95,23 @@ Modelo:
 
 ## Continuar sozinho após o primeiro carregamento
 
-- **Status:** ideia
-- **O que faz:** ao carregar um save, o jogo para ao fim da primeira tela de
-  carregamento e espera um clique antes da segunda. O mod daria esse clique
-  sozinho.
-- **Dúvidas / o que investigar:**
-  - Qual componente espera o clique e como o jogo recebe a confirmação.
-  - Se a pausa tem função (dicas na tela, carregamento ainda em andamento).
-  - Novo jogo também carrega no mesmo modelo de duas telas com click.
+- **Status:** concluída (`mods/AutoContinue`, plano
+  `planos/executados/p50-continuar-apos-carregamento.md`)
+- **O que faz:** ao carregar um save ou iniciar novo jogo, segue sozinho da
+  primeira tela de carregamento para a segunda, sem esperar o clique.
+  Detalhes no README do mod.
+- **Confirmado no jogo** (2026-10-12):
+  - A tela é a cena `LoadingScreen`, controlada por `LoadingScreenManager`;
+    só pergunta pelo clique (`WasButtonPressed`) depois de carregar
+    (`_loaded`) e mostrar o aviso. Novo jogo passa pela mesma tela.
+  - `WasButtonPressed` tem o mesmo código nativo que
+    `TransitionalSceneManager.UserInputForTransitionReceived`, corrigido pelo
+    SkipIntro. Patches pelos dois métodos derrubam o jogo; o mod corrige o da
+    base e confere a classe real.
 
 ## Menu de configurações dos mods
 
-- **Status:** em desenvolvimento (`mods/ModSettings`, plano
+- **Status:** concluída (`mods/ModSettings`, plano
   `planos/executados/p40-menu-de-configuracoes.md`)
 - **O que faz:** `F6` abre uma janela com os mods instalados e suas opções,
   que valem e ficam gravadas na hora, em português ou inglês conforme o
@@ -125,5 +130,4 @@ Modelo:
   - Teclas do jogo levantadas em `docs/teclas-do-jogo.md` (`F10` salva o
     jogo; por isso `F6`).
 - **Dúvidas / o que investigar:**
-  - Um botão "Mods" no menu do jogo.
   - Mostrar também os mods sem opções.

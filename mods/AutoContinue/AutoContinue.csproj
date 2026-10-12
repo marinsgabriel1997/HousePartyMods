@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!-- TargetFramework, GameDir e referências comuns vêm do Directory.Build.props da raiz. -->
+  <PropertyGroup>
+    <AssemblyName>AutoContinue</AssemblyName>
+    <RootNamespace>AutoContinue</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Reference Include="$(Il2CppAssembliesDir)\Il2CppHouseParty.dll" Private="false" />
+  </ItemGroup>
+
+</Project>

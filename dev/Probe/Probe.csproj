@@ -4,6 +4,7 @@
   <PropertyGroup>
     <AssemblyName>Probe</AssemblyName>
     <RootNamespace>Probe</RootNamespace>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
 
   <ItemGroup>
