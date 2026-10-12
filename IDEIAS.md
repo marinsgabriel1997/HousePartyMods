@@ -140,3 +140,16 @@ Modelo:
     jogo; por isso `F6`).
 - **Dúvidas / o que investigar:**
   - Mostrar também os mods sem opções.
+
+## Dublagens localizadas por mod
+
+- **Status:** ideia
+- **O que faz:** troca as vozes em inglês por dublagens em outros idiomas,
+  gravadas ou geradas por IA, sem mexer no áudio original do jogo. Um mesmo
+  mod traz várias dublagens, e o jogador escolhe o idioma.
+- **Pistas:** o projeto `house-party-dubbing`
+  (`C:\Users\gabriel\Documents\projetos\house-party-dubbing`) já faz a troca
+  injetando os áudios nos bundles dos personagens.
+- **Dúvidas / o que investigar:**
+  - Se um mod consegue trocar os áudios na hora de tocar, sem alterar os
+    bundles, o que facilitaria a distribuição.
